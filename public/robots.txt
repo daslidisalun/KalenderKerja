@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://daslidisalun.github.io/kalenderkerja/sitemap.xml
+Sitemap: https://daslidisalun.github.io/KalenderKerja/sitemap.xml
