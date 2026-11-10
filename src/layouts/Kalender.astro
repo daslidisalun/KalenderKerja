@@ -1,0 +1,109 @@
+---
+import { u } from '../lib/base.js';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+// Canonical dibangun dari site + base pada astro.config.mjs (import.meta.env),
+// agar selalu mengikuti alamat terbit.
+const asal = (import.meta.env.SITE ?? '').replace(/\/$/, '');
+const dasar = import.meta.env.BASE_URL.replace(/\/$/, '');
+let jalur = Astro.url.pathname;
+if (jalur === dasar) jalur = '/';
+else if (jalur.startsWith(dasar + '/')) jalur = jalur.slice(dasar.length);
+const canonical = asal + dasar + jalur;
+
+const nav = [
+  ['/', 'Beranda'],
+  ['/kalkulator-hari-kerja/', 'Kalkulator Hari Kerja'],
+  ['/tambah-hari-kerja/', 'Tambah Hari Kerja'],
+  ['/jumlah-hari/', 'Jumlah Hari'],
+  ['/pengoptimal-cuti/', 'Pengoptimal Cuti'],
+  ['/kalender-libur/', 'Kalender Libur'],
+  ['/blog/', 'Blog'],
+  ['/tentang/', 'Tentang'],
+];
+---
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='6' y='14' width='88' height='80' rx='8' fill='%23ffffff' stroke='%231a1a1a' stroke-width='5'/%3E%3Crect x='6' y='14' width='88' height='24' fill='%23D62828'/%3E%3Ctext x='50' y='76' font-family='Arial, sans-serif' font-size='38' font-weight='bold' text-anchor='middle' fill='%231a1a1a'%3E17%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="bungkus">
+        <a class="merek-mini" href={u('/')}>
+          <span class="merek-kotak" aria-hidden="true">17</span> Kalender<strong>Kerja</strong>
+        </a>
+        <button class="tombol-menu" id="tombol-menu" aria-expanded="false" aria-controls="nav-utama">☰ Menu</button>
+        <nav class="nav-tautan" id="nav-utama" aria-label="Navigasi utama">
+          {nav.map(([href, label]) => <a href={u(href)}>{label}</a>)}
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="bungkus">
+        <div class="footer-grid">
+          <div>
+            <p class="footer-merek">Kalender<strong>Kerja</strong></p>
+            <p>
+              Hitung hari kerja, libur nasional, dan cuti bersama Indonesia dari data resmi
+              SKB 3 Menteri — langsung di browser Anda, tanpa server dan tanpa pendaftaran.
+            </p>
+          </div>
+          <nav aria-label="Perkakas">
+            <p class="footer-judul">Perkakas</p>
+            <a href={u('/kalkulator-hari-kerja/')}>Kalkulator Hari Kerja</a>
+            <a href={u('/tambah-hari-kerja/')}>Tambah Hari Kerja</a>
+            <a href={u('/jumlah-hari/')}>Jumlah Hari</a>
+            <a href={u('/pengoptimal-cuti/')}>Pengoptimal Cuti</a>
+            <a href={u('/kalender-libur/')}>Kalender Libur 2026–2027</a>
+          </nav>
+          <nav aria-label="Situs">
+            <p class="footer-judul">Situs</p>
+            <a href={u('/blog/')}>Blog</a>
+            <a href={u('/tentang/')}>Tentang &amp; Sumber Data</a>
+            <a href={u('/kontak/')}>Kontak</a>
+            <a href={u('/privasi/')}>Privasi</a>
+            <a href={u('/disclaimer/')}>Disclaimer</a>
+          </nav>
+        </div>
+        <p class="footer-bawah">
+          Data libur: SKB 3 Menteri tentang Hari Libur Nasional dan Cuti Bersama Tahun 2026
+          (No. 1497, 2, dan 5 Tahun 2025) dan Tahun 2027 (No. 1205, 3, dan 2 Tahun 2026).
+          Tanggal hari raya Islam mengikuti ketetapan SKB dan dapat bergeser mengikuti
+          Keputusan Menteri Agama. KalenderKerja adalah alat bantu hitung, bukan nasihat hukum.
+        </p>
+        <p class="footer-bawah">© 2026 KalenderKerja · kalenderkerja@gmail.com</p>
+      </div>
+    </footer>
+
+    <script>
+      const tombol = document.getElementById('tombol-menu');
+      const navEl = document.getElementById('nav-utama');
+      tombol?.addEventListener('click', () => {
+        const buka = navEl?.classList.toggle('buka') ?? false;
+        tombol.setAttribute('aria-expanded', String(buka));
+      });
+    </script>
+  </body>
+</html>

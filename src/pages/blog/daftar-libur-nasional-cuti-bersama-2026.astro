@@ -1,0 +1,98 @@
+---
+import Artikel from '../../layouts/Artikel.astro';
+import { u } from '../../lib/base.js';
+import { ARTIKEL } from '../../lib/blog.js';
+const artikel = ARTIKEL.find((a) => a.slug === 'daftar-libur-nasional-cuti-bersama-2026');
+---
+<Artikel judul={artikel.judul} ringkasan={artikel.ringkasan} tanggalTampil={artikel.tanggalTampil}>
+  <p>Setiap awal tahun, pertanyaan yang sama muncul di hampir semua kantor: tahun ini liburnya kapan saja? Jawabannya tidak perlu dicari dari tangkapan layar yang beredar di grup pesan, karena pemerintah sudah menetapkannya secara resmi. Daftar libur nasional dan cuti bersama tahun 2026 ditetapkan melalui Surat Keputusan Bersama (SKB) 3 Menteri, yaitu Keputusan Menteri Agama Nomor 1497 Tahun 2025, Keputusan Menteri Ketenagakerjaan Nomor 2 Tahun 2025, dan Keputusan Menteri Pendayagunaan Aparatur Negara dan Reformasi Birokrasi Nomor 5 Tahun 2025. SKB tersebut ditetapkan pada 19 September 2025, sehingga sejak akhir 2025 sebenarnya kalender kerja 2026 sudah bisa direncanakan dengan pasti.</p>
+
+  <p>Artikel ini menyajikan daftar lengkapnya: 17 hari libur nasional dan 8 hari cuti bersama, masing-masing lengkap dengan nama harinya. Selain tabel, kami uraikan pula hal-hal yang sering terlewat ketika orang hanya menyalin tanggalnya saja — rangkaian libur terpanjang tahun ini, bulan-bulan yang sama sekali tidak memiliki libur nasional, catatan mengenai penetapan hari raya Islam, serta perbedaan penting antara libur nasional dan cuti bersama dari sisi hak cuti tahunan Anda.</p>
+
+  <h2>Apa Itu SKB 3 Menteri dan Mengapa Ia Menjadi Acuan</h2>
+
+  <p>Indonesia memiliki hari libur yang berasal dari banyak latar belakang: hari besar keagamaan dari enam agama yang diakui, hari peringatan nasional, dan hari libur kenegaraan. Karena kalender keagamaan — terutama kalender Hijriah dan kalender Saka — tidak berjalan sejajar dengan kalender Masehi, tanggal pastinya harus ditetapkan ulang setiap tahun. Di sinilah SKB 3 Menteri berperan. Menteri Agama berwenang atas aspek keagamaan dan penetapan awal bulan Hijriah, Menteri Ketenagakerjaan mengurusi dampaknya bagi dunia kerja dan hak pekerja, sedangkan Menteri PANRB mengurusi aparatur sipil negara dan pelayanan publik.</p>
+
+  <p>Keputusan bersama ini menjadi acuan bagi instansi pemerintah, perusahaan swasta, sekolah, perbankan, dan penyedia layanan publik dalam menyusun kalender operasional masing-masing. Artinya, apabila Anda menemukan daftar libur 2026 dari sumber lain yang berbeda dengan SKB ini, daftar dari SKB-lah yang seharusnya dipakai. Salinan yang beredar di media sosial kerap merupakan versi lama, versi perkiraan, atau bahkan daftar tahun sebelumnya yang tanggalnya digeser secara asal — dan kesalahan satu tanggal saja bisa berujung pada jadwal mudik, jadwal produksi, atau tenggat proyek yang meleset.</p>
+
+  <h2>Daftar Libur Nasional 2026</h2>
+
+  <p>Berikut 17 hari libur nasional tahun 2026 sesuai SKB 3 Menteri, diurutkan berdasarkan tanggal:</p>
+
+  <div class="tabel-bungkus"><table class="tabel">
+    <thead><tr><th>Tanggal</th><th>Hari</th><th>Keterangan</th></tr></thead>
+    <tbody>
+      <tr><td>1 Januari 2026</td><td>Kamis</td><td>Tahun Baru 2026 Masehi</td></tr>
+      <tr><td>16 Januari 2026</td><td>Jumat</td><td>Isra Mikraj Nabi Muhammad SAW</td></tr>
+      <tr><td>17 Februari 2026</td><td>Selasa</td><td>Tahun Baru Imlek 2577 Kongzili</td></tr>
+      <tr><td>19 Maret 2026</td><td>Kamis</td><td>Hari Suci Nyepi Tahun Baru Saka 1948</td></tr>
+      <tr><td>21 Maret 2026</td><td>Sabtu</td><td>Idulfitri 1447 Hijriah</td></tr>
+      <tr><td>22 Maret 2026</td><td>Minggu</td><td>Idulfitri 1447 Hijriah</td></tr>
+      <tr><td>3 April 2026</td><td>Jumat</td><td>Wafat Yesus Kristus</td></tr>
+      <tr><td>5 April 2026</td><td>Minggu</td><td>Kebangkitan Yesus Kristus (Paskah)</td></tr>
+      <tr><td>1 Mei 2026</td><td>Jumat</td><td>Hari Buruh Internasional</td></tr>
+      <tr><td>14 Mei 2026</td><td>Kamis</td><td>Kenaikan Yesus Kristus</td></tr>
+      <tr><td>27 Mei 2026</td><td>Rabu</td><td>Iduladha 1447 Hijriah</td></tr>
+      <tr><td>31 Mei 2026</td><td>Minggu</td><td>Hari Raya Waisak 2570 BE</td></tr>
+      <tr><td>1 Juni 2026</td><td>Senin</td><td>Hari Lahir Pancasila</td></tr>
+      <tr><td>16 Juni 2026</td><td>Selasa</td><td>1 Muharam Tahun Baru Islam 1448 Hijriah</td></tr>
+      <tr><td>17 Agustus 2026</td><td>Senin</td><td>Proklamasi Kemerdekaan</td></tr>
+      <tr><td>25 Agustus 2026</td><td>Selasa</td><td>Maulid Nabi Muhammad SAW</td></tr>
+      <tr><td>25 Desember 2026</td><td>Jumat</td><td>Kelahiran Yesus Kristus (Natal)</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Beberapa pola menarik terlihat dari tabel di atas. Pertama, bulan Maret menjadi bulan paling padat libur: Nyepi dan dua hari Idulfitri jatuh berdekatan, dan ketiganya kemudian dirangkai oleh cuti bersama menjadi satu rangkaian panjang yang akan kita bahas lebih jauh di bawah. Kedua, cukup banyak libur nasional yang jatuh persis di hari Jumat atau Senin — misalnya Isra Mikraj, Wafat Yesus Kristus, Hari Buruh, dan Natal yang jatuh pada hari Jumat, serta Hari Lahir Pancasila dan Proklamasi Kemerdekaan yang jatuh pada hari Senin. Libur yang menempel pada akhir pekan seperti ini otomatis membentuk long weekend tiga hari tanpa perlu mengambil cuti sama sekali.</p>
+
+  <p>Ketiga, ada pula libur nasional yang jatuh pada akhir pekan, seperti Idulfitri hari kedua, Paskah, dan Waisak yang jatuh pada hari Minggu, serta Idulfitri hari pertama yang jatuh pada hari Sabtu. Bagi pekerja dengan pola kerja Senin sampai Jumat, libur yang jatuh di akhir pekan memang terasa "hilang" karena tidak menambah hari tidak masuk kerja. Namun perlu dicatat bahwa libur nasional pada prinsipnya tidak diganti ke hari kerja lain; tidak ada mekanisme libur pengganti otomatis dalam ketetapan ini. Bagi pekerja dengan pola kerja bergilir atau enam hari kerja, libur di akhir pekan tetap bermakna penuh, sehingga daftar ini tetap relevan untuk semua pola kerja.</p>
+
+  <h2>Daftar Cuti Bersama 2026</h2>
+
+  <p>Di luar libur nasional, SKB 3 Menteri juga menetapkan 8 hari cuti bersama untuk tahun 2026:</p>
+
+  <div class="tabel-bungkus"><table class="tabel">
+    <thead><tr><th>Tanggal</th><th>Hari</th><th>Keterangan</th></tr></thead>
+    <tbody>
+      <tr><td>16 Februari 2026</td><td>Senin</td><td>Tahun Baru Imlek 2577 Kongzili</td></tr>
+      <tr><td>18 Maret 2026</td><td>Rabu</td><td>Hari Suci Nyepi Tahun Baru Saka 1948</td></tr>
+      <tr><td>20 Maret 2026</td><td>Jumat</td><td>Idulfitri 1447 Hijriah</td></tr>
+      <tr><td>23 Maret 2026</td><td>Senin</td><td>Idulfitri 1447 Hijriah</td></tr>
+      <tr><td>24 Maret 2026</td><td>Selasa</td><td>Idulfitri 1447 Hijriah</td></tr>
+      <tr><td>15 Mei 2026</td><td>Jumat</td><td>Kenaikan Yesus Kristus</td></tr>
+      <tr><td>28 Mei 2026</td><td>Kamis</td><td>Iduladha 1447 Hijriah</td></tr>
+      <tr><td>24 Desember 2026</td><td>Kamis</td><td>Kelahiran Yesus Kristus (Natal)</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>Penempatan cuti bersama hampir selalu bertujuan merangkai libur nasional dengan akhir pekan atau dengan libur nasional lain di dekatnya. Cuti bersama Imlek pada Senin 16 Februari, misalnya, menyambung akhir pekan sebelumnya dengan libur Imlek pada Selasa 17 Februari, menghasilkan empat hari libur berturut-turut. Cuti bersama Kenaikan Yesus Kristus pada Jumat 15 Mei menyambung libur Kamis 14 Mei dengan akhir pekan, juga menjadi empat hari. Sementara itu cuti bersama Natal pada Kamis 24 Desember mendahului libur Natal pada Jumat 25 Desember, sehingga rangkaian akhir tahun pun menjadi empat hari bersama akhir pekan.</p>
+
+  <h2>Libur Nasional dan Cuti Bersama Tidak Sama</h2>
+
+  <p>Kesalahpahaman paling umum adalah menganggap cuti bersama sebagai libur tambahan yang diberikan gratis. Kenyataannya berbeda. Menurut ketentuan dalam SKB, pelaksanaan cuti bersama mengurangi hak cuti tahunan pekerja. Jadi apabila perusahaan Anda meliburkan karyawan pada delapan hari cuti bersama tersebut, jatah cuti tahunan Anda berkurang delapan hari — bukan bertambah. Inilah sebabnya karyawan yang jatah cuti tahunannya tepat 12 hari kerja sering terkejut ketika mendapati sisa cutinya tinggal sedikit, padahal merasa belum pernah mengajukan cuti pribadi.</p>
+
+  <p>Perlakuan untuk sektor swasta memiliki nuansa tersendiri. Berdasarkan Surat Edaran Menteri Ketenagakerjaan Nomor M/6/HK.04/XII/2024, cuti bersama bagi pekerja di perusahaan swasta bersifat fakultatif, artinya pelaksanaannya didasarkan pada kesepakatan antara perusahaan dan pekerja. Perusahaan boleh meliburkan, boleh pula tetap beroperasi pada hari cuti bersama. Konsekuensinya juga diatur: pekerja yang tetap bekerja pada hari cuti bersama menerima upah seperti hari kerja biasa dan jatah cuti tahunannya tidak berkurang. Bagi aparatur sipil negara, cuti bersama berlaku sebagai ketetapan yang mengikat sesuai ketentuan tersendiri. Karena itu, sebelum merencanakan apa pun berdasarkan tabel di atas, pastikan dulu bagaimana kebijakan kantor Anda memperlakukan kedelapan tanggal cuti bersama tersebut.</p>
+
+  <h2>Rangkaian Libur Terpanjang: 18–24 Maret 2026</h2>
+
+  <p>Puncak kepadatan libur 2026 terjadi pada bulan Maret. Perhatikan susunannya: Rabu 18 Maret adalah cuti bersama Nyepi, Kamis 19 Maret adalah libur nasional Nyepi, Jumat 20 Maret adalah cuti bersama Idulfitri, Sabtu 21 Maret dan Minggu 22 Maret adalah libur nasional Idulfitri, lalu Senin 23 Maret dan Selasa 24 Maret adalah cuti bersama Idulfitri. Hasilnya adalah tujuh hari libur berturut-turut, dari 18 sampai 24 Maret 2026, tanpa mengambil satu hari pun cuti pribadi.</p>
+
+  <p>Rangkaian ini istimewa karena mempertemukan dua hari besar dari dua tradisi yang berbeda — Nyepi dan Idulfitri — dalam satu pekan yang sama, sesuatu yang tidak terjadi setiap tahun. Bagi perantau, inilah jendela mudik utama 2026. Bagi perusahaan, inilah pekan yang paling perlu diantisipasi dari sisi penjadwalan: produksi, layanan pelanggan, dan tenggat pengiriman sebaiknya tidak ditempatkan menumpuk di pekan tersebut. Apabila Anda masih memiliki jatah cuti dan ingin memperpanjang rangkaian ini, menambahkan cuti pada Rabu 25 Maret sampai Jumat 27 Maret akan menyambungnya dengan akhir pekan berikutnya — tetapi ingat, kebutuhan cuti seperti ini juga dipikirkan oleh hampir semua rekan kerja Anda, jadi ajukanlah jauh-jauh hari.</p>
+
+  <h2>Bulan-Bulan Tanpa Libur Nasional</h2>
+
+  <p>Sisi lain dari kalender 2026 yang jarang disadari adalah adanya bulan-bulan yang sepenuhnya "kering". Pada tahun 2026, bulan Juli, September, Oktober, dan November tidak memiliki satu pun libur nasional. Artinya, setelah libur Maulid Nabi pada 25 Agustus, pekerja dengan pola Senin–Jumat akan menjalani rentang panjang tanpa jeda hari kerja sampai Natal pada 25 Desember — kecuali akhir pekan dan cuti pribadi yang diambil sendiri.</p>
+
+  <p>Rentang kering seperti ini layak masuk perhitungan perencanaan tahunan. Dari sisi kesehatan kerja, menumpuk seluruh cuti di awal tahun dan membiarkan paruh kedua tahun berjalan tanpa jeda sama sekali adalah pola yang melelahkan. Dari sisi praktis, bulan-bulan tanpa libur nasional justru sering menjadi periode paling produktif untuk menjadwalkan proyek besar, pelatihan, atau tenggat penting, karena tidak terpotong libur. Sebaliknya, apabila Anda berencana mengambil cuti panjang untuk keperluan pribadi, bulan-bulan kering adalah tempat yang paling masuk akal untuk menaruhnya, karena cuti Anda tidak "bersaing" dengan libur yang sebenarnya sudah tersedia gratis di bulan lain.</p>
+
+  <h2>Catatan: Hari Raya Islam dan Sidang Isbat</h2>
+
+  <p>Satu catatan resmi yang selalu menyertai SKB perlu dipahami dengan benar. Tanggal-tanggal hari raya Islam dalam daftar ini — Idulfitri, Iduladha, 1 Muharam, Isra Mikraj, dan Maulid Nabi — ditetapkan mengikuti ketentuan Kementerian Agama. Penetapan 1 Ramadan, 1 Syawal, dan 1 Zulhijah dilakukan melalui sidang isbat yang mempertimbangkan hisab dan rukyatulhilal menjelang hari yang bersangkutan. Dalam praktiknya, tanggal yang tercantum dalam SKB hampir selalu terkonfirmasi, tetapi secara formal keputusan akhir untuk awal bulan Hijriah yang menentukan hari raya berada pada hasil sidang isbat tersebut.</p>
+
+  <p>Bagi kebanyakan keperluan perencanaan — memesan tiket, mengajukan cuti, menyusun jadwal produksi — tanggal dalam SKB adalah dasar yang tepat dan memang untuk itulah SKB diterbitkan jauh-jauh hari. Hanya saja, untuk agenda yang sangat kritis dan tidak bisa digeser sama sekali, menyisakan sedikit ruang fleksibel di sekitar hari raya Islam adalah kebiasaan yang bijak.</p>
+
+  <h2>Menindaklanjuti Daftar Ini</h2>
+
+  <p>Daftar tanggal hanya berguna apabila diubah menjadi keputusan. Tiga langkah sederhana yang bisa dilakukan sekarang juga: pertama, tandai kedelapan hari cuti bersama dan tanyakan kepada bagian kepegawaian bagaimana perusahaan Anda memperlakukannya, karena dari situlah sisa cuti tahunan Anda yang sebenarnya bisa diketahui. Kedua, tentukan sejak awal rangkaian libur mana yang akan Anda pakai untuk keperluan besar — mudik, liburan keluarga, atau sekadar istirahat — dan mana yang dibiarkan kosong. Ketiga, apabila pekerjaan Anda diatur dengan tenggat berbasis hari kerja, hitung tenggat itu dengan mengecualikan seluruh tanggal di kedua tabel di atas, bukan dengan perkiraan.</p>
+
+  <p>Untuk melihat seluruh tanggal ini dalam tampilan kalender bulanan, silakan buka <a href={u('/kalender-libur/')}>kalender libur 2026</a> kami. Dan apabila Anda perlu menghitung jumlah hari kerja di antara dua tanggal — untuk tenggat, kontrak, atau jadwal pengiriman — gunakan <a href={u('/kalkulator-hari-kerja/')}>kalkulator hari kerja</a> yang secara otomatis mengecualikan akhir pekan, libur nasional, dan cuti bersama sesuai SKB ini.</p>
+</Artikel>

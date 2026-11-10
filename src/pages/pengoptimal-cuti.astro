@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Kalender.astro';
+import { u } from '../lib/base.js';
+import EdCuti from '../konten/ed-cuti.astro';
+---
+<Layout
+  title="Pengoptimal Cuti — Jendela Cuti Kejepit Paling Efisien 2026–2027 | KalenderKerja"
+  description="Temukan tanggal cuti paling efisien: 1 hari cuti bisa menjadi 6 hari libur (2026) atau 9 hari libur (2027). Dihitung dari data resmi SKB 3 Menteri, lengkap dengan perencana cuti manual."
+>
+  <div class="bungkus-sempit">
+    <div class="daun">
+      <p class="daun-kicker">Perkakas Unggulan</p>
+      <h1>Pengoptimal Cuti</h1>
+      <p class="lede">
+        Jatah cuti tahunan terbatas — pakailah pada tanggal yang tepat. Perkakas ini memindai
+        kalender resmi dan menemukan hari-hari <em>kejepit</em>: hari kerja yang, bila diambil
+        sebagai cuti, menyambung libur nasional, cuti bersama, dan akhir pekan menjadi rangkaian
+        libur panjang.
+      </p>
+    </div>
+
+    <form class="alat" id="form-optimal">
+      <div class="baris">
+        <div class="kolom">
+          <label for="f-tahun">Tahun yang dipindai</label>
+          <select id="f-tahun">
+            <option value="2026" selected>2026</option>
+            <option value="2027">2027</option>
+          </select>
+          <p class="petunjuk">Jendela dihitung dengan aturan baku: Sabtu–Minggu libur, cuti bersama dihitung libur. Efisiensi = total hari libur ÷ hari cuti yang dipakai.</p>
+        </div>
+      </div>
+      <div id="daftar-jendela" aria-live="polite"></div>
+    </form>
+
+    <form class="alat" id="form-manual">
+      <h2 style="margin-top:0">Perencana Manual</h2>
+      <p>
+        Sudah punya rencana tanggal sendiri? Periksa berapa hari cuti tahunan yang benar-benar
+        terpakai dan berapa lama rangkaian libur yang terbentuk.
+      </p>
+      <div class="baris">
+        <div class="kolom">
+          <label for="f-mulai-cuti">Mulai cuti</label>
+          <input type="date" id="f-mulai-cuti" value="2026-05-27" required />
+        </div>
+        <div class="kolom">
+          <label for="f-selesai-cuti">Selesai cuti</label>
+          <input type="date" id="f-selesai-cuti" value="2026-06-01" required />
+        </div>
+      </div>
+      <button class="tombol" type="submit">Periksa Rencana</button>
+      <div class="hasil" id="hasil-manual" aria-live="polite">
+        <div class="hasil-grid">
+          <div class="sel-hasil"><span class="angka merah" id="m-terpakai">–</span><span class="ket">hari cuti terpakai</span></div>
+          <div class="sel-hasil"><span class="angka biru" id="m-rangkaian">–</span><span class="ket">hari libur berurutan</span></div>
+          <div class="sel-hasil"><span class="angka" id="m-resmi">–</span><span class="ket">libur resmi di rentang</span></div>
+        </div>
+        <p id="m-ket" style="margin-top:.9rem"></p>
+      </div>
+    </form>
+
+    <EdCuti />
+
+    <section class="ed">
+      <h2>Perkakas Terkait</h2>
+      <p>
+        Lihat dulu peta libur setahun di <a href={u('/kalender-libur/')}>Kalender Libur</a>, lalu
+        hitung ulang hari kerja tim Anda selama Anda pergi dengan
+        <a href={u('/kalkulator-hari-kerja/')}>Kalkulator Hari Kerja</a>.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    import {
+      jendelaCuti, OPSI_BAKU, adalahHariKerja, selisihHari, tambahHari,
+      formatPanjang, formatSingkat,
+    } from '../lib/hitung.js';
+    import { PETA_LIBUR } from '../lib/libur.js';
+
+    const wadah = document.getElementById('daftar-jendela');
+    const pilihan = document.getElementById('f-tahun');
+
+    function gambarJendela() {
+      const tahun = parseInt(pilihan.value, 10);
+      const daftar = jendelaCuti(tahun, OPSI_BAKU);
+      if (!daftar.length) {
+        wadah.innerHTML = '<p class="kecil">Tidak ditemukan jendela cuti yang memenuhi syarat pada tahun ini.</p>';
+        return;
+      }
+      const tampil = daftar.slice(0, 12);
+      wadah.innerHTML =
+        `<p style="margin-top:1rem">Menampilkan <strong>${tampil.length} jendela terbaik</strong> untuk ${tahun} (dari ${daftar.length} jendela yang berjangkar pada libur resmi), diurutkan dari yang paling efisien:</p>` +
+        tampil.map((j) => `
+          <div class="jendela">
+            <div class="j-atas">
+              <span class="j-total">${j.jumlahHari} hari libur</span>
+              <span class="j-tgl">${formatSingkat(j.mulai)} — ${formatSingkat(j.selesai)}</span>
+              <span class="j-ef">Efisiensi ${String(j.efisiensi).replace('.', ',')}×</span>
+            </div>
+            <p style="margin:.35rem 0 0">Ambil cuti <strong>${j.cuti.length} hari</strong>: ${j.cuti.map((c) => formatPanjang(c)).join('; ')}.</p>
+          </div>`).join('');
+    }
+    pilihan.addEventListener('change', gambarJendela);
+    gambarJendela();
+
+    // Perencana manual.
+    const formManual = document.getElementById('form-manual');
+    function periksa() {
+      let a = document.getElementById('f-mulai-cuti').value;
+      let b = document.getElementById('f-selesai-cuti').value;
+      if (!a || !b) return;
+      if (selisihHari(a, b) < 0) [a, b] = [b, a];
+      const totalRentang = selisihHari(a, b) + 1;
+      let terpakai = 0;
+      let resmi = 0;
+      const setCuti = new Set();
+      for (let i = 0; i < totalRentang; i++) {
+        const iso = tambahHari(a, i);
+        if (PETA_LIBUR.has(iso)) resmi++;
+        if (adalahHariKerja(iso, OPSI_BAKU)) { terpakai++; setCuti.add(iso); }
+      }
+      // Perluas rangkaian: hari di rentang + hari cuti dianggap libur; akhir pekan &
+      // libur resmi di tepi rentang ikut menyambung.
+      const libur = (iso) => !adalahHariKerja(iso, OPSI_BAKU) || setCuti.has(iso);
+      let mulai = a;
+      while (libur(tambahHari(mulai, -1))) mulai = tambahHari(mulai, -1);
+      let selesai = b;
+      while (libur(tambahHari(selesai, 1))) selesai = tambahHari(selesai, 1);
+      const rangkaian = selisihHari(mulai, selesai) + 1;
+      document.getElementById('m-terpakai').textContent = terpakai;
+      document.getElementById('m-rangkaian').textContent = rangkaian;
+      document.getElementById('m-resmi').textContent = resmi;
+      document.getElementById('m-ket').innerHTML =
+        `Rentang ${formatPanjang(a)} s.d. ${formatPanjang(b)} memakai <strong>${terpakai} hari cuti tahunan</strong> ` +
+        `(hari kerja di dalam rentang). Dengan akhir pekan dan libur resmi yang menempel, rangkaian libur Anda menjadi ` +
+        `<strong>${rangkaian} hari</strong>: ${formatSingkat(mulai)} — ${formatSingkat(selesai)}.`;
+    }
+    formManual.addEventListener('submit', (e) => { e.preventDefault(); periksa(); });
+    formManual.addEventListener('change', periksa);
+    periksa();
+  </script>
+</Layout>

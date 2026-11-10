@@ -1,0 +1,82 @@
+---
+import { u } from '../lib/base.js';
+---
+<section class="ed">
+  <h2>Apa Arti Tenggat “N Hari Kerja”?</h2>
+  <p>Ungkapan “selesai dalam sepuluh hari kerja”, “diproses tiga sampai lima hari kerja”, atau “dibayar paling lambat empat belas hari kerja setelah dokumen diterima” muncul di kontrak, toko daring, perbankan, dan layanan publik hampir setiap hari. Maksudnya selalu sama: yang dihitung hanyalah hari kerja — Senin sampai Jumat yang bukan hari libur nasional dan, dalam konvensi baku situs ini, bukan cuti bersama. Hari Sabtu, Minggu, dan hari libur yang berada di antara tanggal mulai dan tanggal selesai tidak menambah hitungan; hari-hari itu dilewati.</p>
+  <p>Akibatnya, tenggat dalam hari kerja hampir selalu jatuh lebih jauh daripada tenggat hari kalender dengan angka yang sama. Lima hari kerja dari hari Senin biasanya berakhir pada Senin berikutnya, bukan pada hari Jumat di minggu yang sama, karena akhir pekan di tengahnya tidak dihitung. Sepuluh hari kerja umumnya membentang sekitar dua minggu kalender. Dan bila di tengah rentang itu ada rangkaian libur — misalnya Idulfitri atau Natal — tenggat bisa bergeser beberapa hari lagi. Perkakas Tambah Hari Kerja di halaman ini menghitung pergeseran itu secara persis dari tanggal awal dan jumlah hari kerja yang Anda masukkan, dengan data libur resmi sebagai dasarnya.</p>
+  <p>Kebalikannya juga berlaku dan sama pentingnya. Seseorang yang membaca “lima hari kerja” sebagai “lima hari kalender” akan menjanjikan tanggal selesai yang terlalu awal. Kesalahan semacam ini jarang disadari pada saat janji dibuat; ia baru terasa ketika tanggal yang dijanjikan tiba dan pekerjaan ternyata masih memerlukan dua atau tiga hari kerja lagi. Menghitung dengan perkakas, bukan dengan perkiraan, menghilangkan risiko tersebut sebelum janji disampaikan.</p>
+
+  <h2>Konvensi Hitung: Tanggal Awal Tidak Dihitung</h2>
+  <p>Perkakas ini memakai konvensi yang lazim dipakai dalam kontrak dan administrasi: <strong>tanggal awal tidak dihitung</strong>. Penghitungan dimulai dari hari berikutnya, dan hasil adalah tanggal hari kerja ke-N sesudah tanggal awal. Dengan kata lain, menambahkan satu hari kerja pada hari Jumat menghasilkan hari Senin berikutnya — atau Selasa, bila Senin itu libur — bukan hari Jumat itu sendiri.</p>
+  <p>Konvensi ini masuk akal karena tanggal awal adalah hari peristiwa itu terjadi: hari kontrak ditandatangani, hari pembayaran diterima, atau hari pengajuan masuk. Hari tersebut umumnya sudah berjalan sebagian ketika peristiwa terjadi, sehingga tidak dihitung sebagai satu hari kerja penuh. Hari kerja pertama yang dihitung adalah hari kerja berikutnya yang utuh.</p>
+  <p>Beberapa hal yang mengikuti konvensi ini perlu diperhatikan:</p>
+  <ul>
+    <li>Menambahkan nol hari kerja selalu menghasilkan tanggal awal itu sendiri, apa pun status harinya.</li>
+    <li>Tanggal awal boleh jatuh pada akhir pekan atau hari libur. Penghitungan tetap dimulai dari hari berikutnya dan mencari hari kerja ke-N; status tanggal awal tidak mengubah hasilnya.</li>
+    <li>Setiap akhir pekan dan hari libur yang dilewati memperpanjang jarak kalender antara tanggal awal dan tanggal hasil, tanpa mengubah jumlah hari kerja yang diminta.</li>
+    <li>Pengaturan hari kerja yang berlaku sama dengan kalkulator utama: Senin sampai Jumat sebagai bawaan, libur nasional selalu libur, cuti bersama libur secara bawaan, dengan sakelar untuk Sabtu kerja dan untuk perusahaan yang tetap masuk pada cuti bersama. Samakan pengaturan ini dengan aturan pihak yang menetapkan tenggat, karena perbedaan satu sakelar dapat mengubah tanggal hasil.</li>
+  </ul>
+  <p>Bila Anda justru perlu mengetahui berapa hari kerja yang tersedia di antara dua tanggal yang sudah ditentukan, gunakan <a href={u('/kalkulator-hari-kerja/')}>Kalkulator Hari Kerja</a>. Bila kedua tanggal sudah diketahui dan yang dicari adalah selisihnya, gunakan <a href={u('/jumlah-hari/')}>Jumlah Hari</a>.</p>
+
+  <h2>Contoh Terhitung: +10 Hari Kerja dari Jumat 8 Mei 2026</h2>
+  <p>Contoh berikut menunjukkan mengapa hasil hitungan tidak dapat ditebak hanya dengan menambahkan angka pada kalender. Tanggal awal: Jumat, 8 Mei 2026. Jumlah yang ditambahkan: 10 hari kerja, dengan pengaturan bawaan. Pada minggu berikutnya terdapat libur Kenaikan Yesus Kristus pada Kamis 14 Mei 2026 dan cuti bersama pada Jumat 15 Mei 2026, yang keduanya harus dilewati.</p>
+  <div class="tabel-bungkus"><table class="tabel">
+    <thead>
+      <tr><th>Hari kerja ke-</th><th>Tanggal</th><th>Keterangan</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>—</td><td>Jumat 8 Mei 2026</td><td>Tanggal awal — tidak dihitung</td></tr>
+      <tr><td>1</td><td>Senin 11 Mei 2026</td><td>Sabtu 9 dan Minggu 10 Mei dilewati</td></tr>
+      <tr><td>2</td><td>Selasa 12 Mei 2026</td><td>—</td></tr>
+      <tr><td>3</td><td>Rabu 13 Mei 2026</td><td>—</td></tr>
+      <tr><td>—</td><td>Kamis 14 Mei 2026</td><td>Dilewati — Kenaikan Yesus Kristus</td></tr>
+      <tr><td>—</td><td>Jumat 15 Mei 2026</td><td>Dilewati — cuti bersama</td></tr>
+      <tr><td>4</td><td>Senin 18 Mei 2026</td><td>Akhir pekan 16–17 Mei dilewati</td></tr>
+      <tr><td>5</td><td>Selasa 19 Mei 2026</td><td>—</td></tr>
+      <tr><td>6</td><td>Rabu 20 Mei 2026</td><td>—</td></tr>
+      <tr><td>7</td><td>Kamis 21 Mei 2026</td><td>—</td></tr>
+      <tr><td>8</td><td>Jumat 22 Mei 2026</td><td>—</td></tr>
+      <tr><td>9</td><td>Senin 25 Mei 2026</td><td>Akhir pekan 23–24 Mei dilewati</td></tr>
+      <tr><td>10</td><td><strong>Selasa 26 Mei 2026</strong></td><td>Tanggal hasil</td></tr>
+    </tbody>
+  </table></div>
+  <p>Hasilnya adalah Selasa, 26 Mei 2026: sepuluh hari kerja membentang menjadi delapan belas hari kalender. Enam hari kalender terserap akhir pekan dan dua hari terserap libur serta cuti bersama. Seseorang yang menambahkan sepuluh hari kalender secara polos akan memperoleh 18 Mei — delapan hari lebih awal dari tenggat yang benar. Daftar hari yang dilewati, yang ditampilkan perkakas bersama hasil, memungkinkan Anda memeriksa lompatan ini satu per satu dan menunjukkan dasar hitungan bila tanggal hasil dipertanyakan oleh pihak lain.</p>
+
+  <h2>Menghitung Mundur: Angka Negatif untuk Persiapan</h2>
+  <p>Perkakas yang sama bekerja ke arah sebaliknya. Masukkan jumlah negatif, misalnya −5, untuk mencari tanggal lima hari kerja <em>sebelum</em> tanggal awal. Konvensinya simetris: tanggal awal tidak dihitung, penghitungan berjalan mundur dari hari sebelumnya, dan hasil adalah hari kerja ke-N sebelum tanggal awal.</p>
+  <p>Contoh: −5 hari kerja dari Senin, 25 Mei 2026. Berjalan mundur, hari kerja yang dilalui adalah Jumat 22 Mei (ke-1), Kamis 21 Mei (ke-2), Rabu 20 Mei (ke-3), Selasa 19 Mei (ke-4), dan Senin 18 Mei 2026 (ke-5). Hasilnya: <strong>Senin, 18 Mei 2026</strong>. Perhatikan bahwa libur 14 dan 15 Mei tidak ikut berperan di sini karena keduanya berada sebelum hari kerja ke-5 yang dicapai; penghitungan berhenti begitu jumlah yang diminta terpenuhi.</p>
+  <p>Hitung mundur inilah yang paling berguna untuk persiapan. Tenggat jarang berdiri sendiri: sebelum tanggal serah terima ada pemeriksaan, sebelum pemeriksaan ada penyelesaian pekerjaan, dan sebelum itu ada pengumpulan bahan. Beberapa penggunaan yang lazim:</p>
+  <ul>
+    <li><strong>Tanggal mulai terakhir.</strong> Bila sebuah pekerjaan memerlukan sepuluh hari kerja dan harus selesai pada suatu tanggal, hitung mundur sepuluh hari kerja dari tanggal itu untuk memperoleh tanggal mulai terakhir yang masih aman.</li>
+    <li><strong>Batas pengajuan internal.</strong> Bila instansi memberi waktu lima hari kerja untuk menanggapi, tim dapat menetapkan batas internal dua atau tiga hari kerja sebelumnya agar masih ada ruang perbaikan.</li>
+    <li><strong>Jadwal pembayaran dan pengiriman.</strong> Menghitung mundur dari tanggal jatuh tempo menunjukkan kapan proses pembayaran atau pengiriman harus dimulai, bukan sekadar kapan harus tiba.</li>
+    <li><strong>Persiapan acara dan audit.</strong> Kebutuhan seperti “bahan siap lima hari kerja sebelum acara” diterjemahkan langsung menjadi tanggal kalender yang dapat ditulis di rencana kerja.</li>
+  </ul>
+
+  <h2>Mode Hari Kerja versus Mode Hari Kalender</h2>
+  <p>Perkakas ini menyediakan dua mode penambahan, dan memilih mode yang salah adalah kesalahan yang paling mudah terjadi. Mode <strong>hari kerja</strong> melewati akhir pekan dan hari libur, sebagaimana dijelaskan di atas. Mode <strong>hari kalender</strong> menambahkan jumlah hari secara polos: setiap tanggal dihitung, termasuk Sabtu, Minggu, dan hari libur, sehingga menambahkan sepuluh hari kalender pada 8 Mei 2026 menghasilkan 18 Mei 2026.</p>
+  <p>Mode hari kalender bukan mode yang keliru — ia hanya menjawab pertanyaan yang berbeda. Masa berlaku, umur simpan, jangka waktu sewa, dan banyak ketentuan yang dinyatakan sebagai “hari” tanpa kata “kerja” memang dihitung dalam hari kalender. Sebaliknya, setiap ketentuan yang secara tegas menuliskan “hari kerja” wajib dihitung dengan mode hari kerja. Bacalah bunyi ketentuan yang menjadi dasar Anda terlebih dahulu, samakan modenya, baru percayai tanggal hasilnya. Bila ketentuan tidak menyebutkan keduanya secara jelas, tanyakan kepada pihak yang menerbitkannya daripada menebak, karena selisih kedua mode pada rentang yang melintasi libur panjang dapat mencapai satu minggu atau lebih.</p>
+
+  <h2>Penggunaan dalam Praktik</h2>
+  <ul>
+    <li><strong>SLA vendor dan dukungan teknis.</strong> Vendor yang berjanji menanggapi dalam dua hari kerja dan menyelesaikan dalam lima hari kerja dinilai dari tanggal-tanggal hasil hitungan ini, bukan dari hari kalender yang berlalu.</li>
+    <li><strong>Janji pengiriman “3–5 hari kerja”.</strong> Pembeli yang memesan pada hari Jumat sering mengira paket tiba Rabu berikutnya. Dengan rangkaian libur di antaranya, lima hari kerja dapat berarti tanggal yang jauh lebih lambat — dan penjual yang menghitungnya dengan benar dapat menyampaikan perkiraan yang jujur sejak awal.</li>
+    <li><strong>Pengurusan dokumen.</strong> Paspor, izin, dan berbagai surat keterangan dinyatakan selesai dalam sejumlah hari kerja sejak berkas lengkap diterima. Menambah hari kerja dari tanggal penerimaan memberi tanggal pengambilan yang realistis.</li>
+    <li><strong>Masa sanggah dan tanggapan.</strong> Ketentuan yang memberi kesempatan menanggapi dalam sejumlah hari kerja dihitung dari hari setelah pemberitahuan diterima, persis seperti konvensi perkakas ini.</li>
+  </ul>
+
+  <h2>Pertanyaan yang Sering Diajukan</h2>
+  <dl class="faq">
+    <dt>Mengapa tanggal awal tidak ikut dihitung?</dt>
+    <dd>Karena tanggal awal adalah hari peristiwanya terjadi — hari pengajuan masuk atau kontrak ditandatangani — yang umumnya sudah berjalan sebagian. Konvensi lazim dalam administrasi dan kontrak adalah mulai menghitung dari hari berikutnya, sehingga hasil adalah hari kerja ke-N sesudah tanggal awal. Bila ketentuan Anda menyatakan tanggal awal ikut dihitung, tambahkan satu pada jumlah hari kerja yang Anda masukkan untuk memperoleh hasil yang setara.</dd>
+    <dt>Apa yang terjadi bila tanggal awal jatuh pada hari libur atau akhir pekan?</dt>
+    <dd>Penghitungan tetap berjalan seperti biasa: perkakas bergerak ke hari berikutnya — atau hari sebelumnya, untuk angka negatif — dan mulai menghitung hari kerja dari sana. Status tanggal awal itu sendiri tidak mengubah hasil, karena tanggal awal memang tidak dihitung dalam kedua arah.</dd>
+    <dt>Bagaimana cara memakai hasil hitung mundur untuk tenggat saya?</dt>
+    <dd>Tentukan dulu berapa hari kerja yang dibutuhkan proses persiapan Anda, lalu masukkan angka negatif sebesar itu dari tanggal tenggat. Tanggal hasil adalah hari terakhir persiapan itu harus dimulai atau diselesaikan, tergantung cara Anda mendefinisikan jumlahnya. Tulis tanggal hasil tersebut sebagai tanggal kalender biasa di rencana kerja Anda.</dd>
+    <dt>Apakah cuti bersama selalu dilewati dalam mode hari kerja?</dt>
+    <dd>Secara bawaan ya, karena pengaturan awal memperlakukan cuti bersama sebagai libur. Bila perusahaan atau instansi yang menetapkan tenggat Anda tetap beroperasi pada cuti bersama, ubah pengaturannya agar cuti bersama dihitung sebagai hari kerja — tanggal hasil akan bergeser lebih awal sesuai jumlah cuti bersama yang dilewati. Libur nasional selalu dilewati dalam semua pengaturan.</dd>
+    <dt>Mengapa hasil saya berbeda satu hari dari hitungan pihak lain?</dt>
+    <dd>Perbedaan satu hari paling sering berasal dari konvensi tanggal awal: pihak lain mungkin menghitung tanggal awal sebagai hari pertama. Perbedaan yang lebih besar biasanya berasal dari pengaturan Sabtu kerja atau cuti bersama yang tidak sama. Samakan dulu ketiga hal itu — konvensi tanggal awal, pola Sabtu, dan perlakuan cuti bersama — sebelum menyimpulkan ada kesalahan hitung.</dd>
+  </dl>
+</section>

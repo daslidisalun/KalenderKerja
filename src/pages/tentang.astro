@@ -1,0 +1,165 @@
+---
+import Kalender from '../layouts/Kalender.astro';
+import { u } from '../lib/base.js';
+---
+<Kalender title="Tentang KalenderKerja — Sumber Data & Metode" description="Sumber data, metode hitung, dan keterbatasan KalenderKerja: SKB 3 Menteri untuk 2026 dan 2027, verifikasi silang dengan rilis Sekretariat Negara, definisi hari kerja, dan dua sakelar hitung yang dipakai semua perkakas.">
+  <div class="bungkus-sempit">
+    <div class="daun">
+      <p class="daun-kicker">Tentang</p>
+      <h1>Tentang KalenderKerja</h1>
+      <p class="lede">KalenderKerja adalah alat bantu hitung hari kerja Indonesia yang berpijak pada satu hal saja: daftar libur resmi dari SKB 3 Menteri, ditampilkan dan dihitung seteliti mungkin, langsung di browser Anda.</p>
+    </div>
+    <section class="ed">
+      <h2>Misi situs ini</h2>
+      <p>
+        KalenderKerja dibuat karena satu pertanyaan sederhana ternyata sulit dijawab dengan pasti:
+        “Berapa hari kerja antara hari ini dan tanggal itu?” Kalender dinding menunjukkan tanggal merah,
+        tetapi tidak menjumlahkannya. Lembar kerja dapat menghitung hari, tetapi tidak tahu libur
+        nasional tahun ini tanpa dimasukkan satu per satu — dan di situlah kesalahan biasanya masuk:
+        satu tanggal libur terlewat, satu cuti bersama dianggap libur padahal kantor tetap masuk, atau
+        daftar dari tahun yang salah tertempel ke tahun berikutnya.
+      </p>
+      <p>
+        Misi situs ini adalah menghilangkan pekerjaan rawan salah itu. Daftar libur nasional dan cuti
+        bersama dimasukkan <strong>sekali, dari dokumen resminya</strong>, diverifikasi silang, lalu
+        dipakai bersama oleh semua perkakas: <a href={u('/kalkulator-hari-kerja/')}>Kalkulator Hari
+        Kerja</a> untuk menghitung hari kerja di antara dua tanggal,
+        <a href={u('/tambah-hari-kerja/')}>Tambah Hari Kerja</a> untuk mencari tanggal tenggat,
+        <a href={u('/jumlah-hari/')}>Jumlah Hari</a> untuk selisih tanggal,
+        <a href={u('/pengoptimal-cuti/')}>Pengoptimal Cuti</a> untuk merencanakan cuti, dan
+        <a href={u('/kalender-libur/')}>Kalender Libur</a> untuk melihat setahun penuh. Anda membawa
+        pertanyaannya; situs ini membawa daftar liburnya. Hasilnya adalah hitungan yang dapat diperiksa
+        ulang oleh siapa pun, karena aturan dan sumbernya dinyatakan terbuka di halaman ini — bukan
+        kotak hitam yang meminta Anda percaya begitu saja.
+      </p>
+      <p>
+        Situs ini sengaja dibuat sederhana dan statis. Tidak ada akun, tidak ada unggahan berkas, dan
+        tidak ada alasan bagi tanggal yang Anda hitung untuk meninggalkan perangkat Anda. Kesederhanaan
+        itu adalah bagian dari misinya: alat yang dipakai orang untuk urusan tenggat dan cuti seharusnya
+        cepat dibuka, mudah diperiksa, dan tidak meminta apa pun sebagai imbalan.
+      </p>
+
+      <h2>Sumber data: SKB 3 Menteri</h2>
+      <p>
+        Satu-satunya sumber daftar libur di situs ini adalah <strong>Surat Keputusan Bersama (SKB)
+        Menteri Agama, Menteri Ketenagakerjaan, dan Menteri Pendayagunaan Aparatur Negara dan Reformasi
+        Birokrasi</strong> tentang Hari Libur Nasional dan Cuti Bersama — dokumen yang sama yang menjadi
+        acuan kalender resmi, instansi pemerintah, dan perusahaan di seluruh Indonesia.
+      </p>
+      <h3>Tahun 2026</h3>
+      <p>
+        SKB Menteri Agama <strong>No. 1497 Tahun 2025</strong>, Menteri Ketenagakerjaan
+        <strong>No. 2 Tahun 2025</strong>, dan Menteri PANRB <strong>No. 5 Tahun 2025</strong>, ditetapkan
+        pada <strong>19 September 2025</strong>. Isinya: <strong>17 hari libur nasional</strong> dan
+        <strong>8 hari cuti bersama</strong> untuk tahun 2026.
+      </p>
+      <h3>Tahun 2027</h3>
+      <p>
+        SKB Menteri Agama <strong>No. 1205 Tahun 2026</strong>, Menteri Ketenagakerjaan
+        <strong>No. 3 Tahun 2026</strong>, dan Menteri PANRB <strong>No. 2 Tahun 2026</strong>, ditetapkan
+        pada <strong>15 September 2026</strong>. Isinya: <strong>18 hari libur nasional</strong> — tujuh
+        belas butir peringatan, dengan Idulfitri dirayakan dua hari dan Isra Mikraj jatuh dua kali dalam
+        tahun itu — dan <strong>8 hari cuti bersama</strong> untuk tahun 2027.
+      </p>
+      <h3>Verifikasi silang</h3>
+      <p>
+        Daftar tanggal tidak dimasukkan dari satu salinan lalu dipercaya begitu saja. Untuk setiap tahun,
+        daftar diambil dari <strong>rilis resmi Sekretariat Negara</strong> mengenai SKB tersebut, lalu
+        <strong>dicocokkan satu per satu dengan dua sumber pembanding</strong> yang menerbitkan daftar
+        yang sama secara mandiri. Setiap ketidakcocokan diperiksa kembali ke bunyi SKB-nya sebelum daftar
+        dinyatakan final. Ketiga sumber untuk masing-masing tahun sepakat pada jumlah dan tanggal yang
+        dipakai situs ini. Prosedur ini penting karena daftar libur adalah data yang mudah sekali
+        tersalin keliru di internet — satu tanggal yang bergeser pada satu situs dapat tersebar ke banyak
+        situs lain — sehingga kesepakatan tiga sumber yang berdiri sendiri adalah syarat minimum, bukan
+        kemewahan.
+      </p>
+
+      <h2>Metode hitung</h2>
+      <h3>Definisi hari kerja</h3>
+      <p>
+        Aturan baku yang dipakai semua perkakas adalah: hari kerja adalah hari <strong>Senin sampai
+        Jumat</strong> yang <strong>bukan libur nasional</strong> dan <strong>bukan cuti bersama</strong>.
+        Hari Minggu tidak pernah menjadi hari kerja. Sebuah tanggal yang tercantum sebagai libur di dalam
+        SKB tidak pernah dihitung sebagai hari kerja, pada hari apa pun ia jatuh — termasuk apabila ia
+        jatuh pada hari Sabtu ketika pola enam hari kerja sedang dipakai. Rentang pada Kalkulator Hari
+        Kerja dihitung <strong>inklusif</strong>: tanggal awal dan tanggal akhir sama-sama dihitung, dan
+        urutan tanggal yang terbalik ditukar otomatis. Pada Tambah Hari Kerja, tanggal awal
+        <strong>tidak</strong> dihitung; hasilnya adalah hari kerja ke-N sesudah (atau sebelum) tanggal
+        awal tersebut. Konvensi-konvensi ini dinyatakan di setiap perkakas, tepat di dekat hasilnya.
+      </p>
+      <h3>Dua sakelar</h3>
+      <p>
+        Karena pola kerja nyata tidak seragam, setiap perkakas menyediakan dua sakelar yang mengubah
+        aturan baku secara terbuka. Sakelar pertama, <strong>“Sabtu dihitung hari kerja”</strong>,
+        ditujukan bagi tempat kerja berpola enam hari kerja: mengaktifkannya menjadikan Sabtu sebagai
+        hari kerja, kecuali bila Sabtu itu adalah libur resmi. Sakelar kedua,
+        <strong>“Cuti bersama dihitung libur”</strong> — aktif secara bawaan — menentukan apakah delapan
+        hari cuti bersama dalam setahun mengurangi hari kerja atau tidak; matikan sakelar ini bila kantor
+        Anda tetap beroperasi pada hari cuti bersama. Kedua sakelar bekerja pada daftar libur yang sama;
+        yang berubah hanyalah aturan mainnya, dan aturan yang sedang aktif selalu terlihat oleh pengguna,
+        tidak disembunyikan.
+      </p>
+      <h3>Verifikasi silang implementasi ganda</h3>
+      <p>
+        Mesin hitung situs ini tidak hanya diuji dengan beberapa contoh yang terasa benar. Seluruh
+        perhitungan — hitung rentang, tambah hari kerja, selisih tanggal, rangkaian libur, dan jendela
+        cuti — <strong>diimplementasikan dua kali secara mandiri</strong>, dalam dua bahasa pemrograman
+        yang berbeda, dari definisi dan daftar libur yang sama. Kedua implementasi kemudian dijalankan
+        atas rangkaian tanggal uji yang luas dan hasilnya dibandingkan satu per satu; setiap perbedaan
+        berarti ada yang harus diperiksa, dan tidak ada hasil yang diterbitkan selama keduanya belum
+        sepakat. Cara ini menangkap jenis kesalahan yang paling berbahaya pada alat hitung — kesalahan
+        yang konsisten dan terlihat meyakinkan — karena kecil kemungkinannya dua penulisan yang
+        benar-benar terpisah membuat kesalahan yang persis sama di tempat yang persis sama.
+      </p>
+
+      <h2>Keterbatasan yang perlu Anda ketahui</h2>
+      <ul>
+        <li>
+          <strong>Hari raya Islam mengikuti ketetapan akhir pemerintah.</strong> Sesuai catatan di dalam
+          SKB itu sendiri, penetapan tanggal 1 Ramadan, Idulfitri, dan Iduladha mengikuti
+          <strong>Keputusan Menteri Agama</strong> setelah sidang isbat. Tanggal yang tampil di situs ini
+          adalah tanggal menurut SKB sebagaimana diterbitkan; apabila sidang isbat menggesernya, tanggal
+          menurut Keputusan Menteri Agama itulah yang resmi.
+        </li>
+        <li>
+          <strong>Libur khusus daerah tidak termasuk.</strong> Beberapa daerah memiliki hari libur lokal
+          — misalnya seputar hari jadi daerah atau hari besar setempat — yang tidak tercantum dalam SKB
+          nasional. Hari-hari tersebut tidak dihitung di sini.
+        </li>
+        <li>
+          <strong>Hari libur fakultatif perusahaan tidak termasuk.</strong> Kebijakan internal seperti
+          libur tambahan perusahaan, hari bebas menyambut hari raya tertentu, atau pengaturan jembatan
+          versi kantor Anda sendiri berada di luar daftar nasional dan perlu diperhitungkan terpisah.
+        </li>
+        <li>
+          <strong>Data hanya mencakup 2026–2027.</strong> Situs ini menampilkan dan menghitung hanya
+          untuk dua tahun yang SKB-nya sudah terbit dan terverifikasi di atas. Tanggal di luar rentang
+          itu diperlakukan tanpa data libur — hanya akhir pekannya yang berlaku — sehingga hasil hitung
+          yang melintasi batas tahun cakupan harus dibaca dengan kesadaran itu.
+        </li>
+      </ul>
+      <p>
+        Keterbatasan-keterbatasan ini juga dirangkum dalam <a href={u('/disclaimer/')}>Disclaimer</a>:
+        KalenderKerja adalah alat bantu hitung, bukan nasihat hukum atau nasihat kepegawaian, dan untuk
+        keputusan yang mengikat, dokumen resmi dan kebijakan kantor Anda selalu menjadi acuan terakhir.
+      </p>
+
+      <h2>Privasi, secara singkat</h2>
+      <p>
+        Semua perhitungan di situs ini berjalan <strong>lokal di peramban Anda</strong>. Tidak ada akun,
+        tidak ada formulir yang mengirim tanggal Anda ke server, dan tidak ada basis data pengguna.
+        Penjelasan lengkap — termasuk catatan jujur mengenai log akses teknis pada hosting statis dan
+        pemuatan font dari Google Fonts — ada di halaman <a href={u('/privasi/')}>Kebijakan Privasi</a>.
+      </p>
+
+      <h2>Kontak</h2>
+      <p>
+        KalenderKerja dikelola secara mandiri. Satu-satunya kanal kontak adalah email
+        <strong>kalenderkerja@gmail.com</strong> — terutama untuk koreksi data libur (mohon sebutkan
+        sumber resminya) dan laporan kesalahan hitung (mohon sertakan contoh tanggalnya agar dapat
+        ditelusuri). Rincian mengenai laporan apa saja yang dapat dibantu ada di halaman
+        <a href={u('/kontak/')}>Kontak</a>.
+      </p>
+    </section>
+  </div>
+</Kalender>

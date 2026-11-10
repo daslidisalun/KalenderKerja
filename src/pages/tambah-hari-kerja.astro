@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Kalender.astro';
+import { u } from '../lib/base.js';
+import EdTambah from '../konten/ed-tambah.astro';
+---
+<Layout
+  title="Tambah Hari Kerja — Tenggat N Hari Kerja Jatuh pada Tanggal Berapa? | KalenderKerja"
+  description="Tambah atau kurangi hari kerja (atau hari kalender) dari suatu tanggal dengan melewati akhir pekan dan libur resmi SKB 3 Menteri secara otomatis. Untuk deadline, SLA, dan janji pengiriman."
+>
+  <div class="bungkus-sempit">
+    <div class="daun">
+      <p class="daun-kicker">Perkakas</p>
+      <h1>Tambah Hari Kerja</h1>
+      <p class="lede">
+        Kontrak berbunyi “selesai dalam 10 hari kerja” — jatuh pada tanggal berapa? Masukkan
+        tanggal mulai dan jumlah harinya; akhir pekan dan libur resmi dilewati secara otomatis,
+        dan Anda dapat melihat hari libur apa saja yang dilewati.
+      </p>
+    </div>
+
+    <form class="alat" id="form-tambah">
+      <div class="baris">
+        <div class="kolom">
+          <label for="f-mulai">Tanggal mulai</label>
+          <input type="date" id="f-mulai" value="2026-05-08" required />
+        </div>
+        <div class="kolom">
+          <label for="f-n">Jumlah hari (boleh negatif)</label>
+          <input type="number" id="f-n" value="10" step="1" required />
+        </div>
+        <div class="kolom">
+          <label for="f-mode">Mode hitung</label>
+          <select id="f-mode">
+            <option value="kerja" selected>Hari kerja</option>
+            <option value="kalender">Hari kalender</option>
+          </select>
+          <p class="petunjuk">Tanggal mulai tidak ikut dihitung; hasil adalah hari ke-N sesudahnya (atau sebelumnya, untuk angka negatif).</p>
+        </div>
+      </div>
+      <label class="sakelar">
+        <input type="checkbox" id="f-sabtu" />
+        <span><strong>Sabtu dihitung hari kerja</strong> (mode hari kerja).</span>
+      </label>
+      <label class="sakelar">
+        <input type="checkbox" id="f-bersama" checked />
+        <span><strong>Cuti bersama dihitung libur</strong> (mode hari kerja).</span>
+      </label>
+      <button class="tombol" type="submit">Hitung Tanggal Hasil</button>
+
+      <div class="hasil" id="hasil" aria-live="polite">
+        <p style="margin:0">Tanggal hasil:</p>
+        <p class="angka" style="font-size:1.9rem;font-weight:900;line-height:1.2;margin:.2rem 0" id="r-hasil">–</p>
+        <p id="r-ket"></p>
+        <div id="r-lewat"></div>
+      </div>
+    </form>
+
+    <EdTambah />
+
+    <section class="ed">
+      <h2>Perkakas Terkait</h2>
+      <p>
+        Butuh rincian sebuah rentang tanggal? Pakai
+        <a href={u('/kalkulator-hari-kerja/')}>Kalkulator Hari Kerja</a>. Butuh selisih dua tanggal
+        dalam hari, minggu, dan tahun-bulan-hari? Buka <a href={u('/jumlah-hari/')}>Jumlah Hari</a>.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    import { tambahHariKerja, tambahHariKalender, formatPanjang } from '../lib/hitung.js';
+
+    const form = document.getElementById('form-tambah');
+    function hitung() {
+      const mulai = document.getElementById('f-mulai').value;
+      const n = parseInt(document.getElementById('f-n').value, 10);
+      const mode = document.getElementById('f-mode').value;
+      if (!mulai || Number.isNaN(n)) return;
+      const elHasil = document.getElementById('r-hasil');
+      const elKet = document.getElementById('r-ket');
+      const elLewat = document.getElementById('r-lewat');
+      if (mode === 'kalender') {
+        const hasil = tambahHariKalender(mulai, n);
+        elHasil.textContent = formatPanjang(hasil);
+        elKet.innerHTML = `${n >= 0 ? 'Ditambah' : 'Dikurangi'} <strong>${Math.abs(n)} hari kalender</strong> dari ${formatPanjang(mulai)}.`;
+        elLewat.innerHTML = '';
+        return;
+      }
+      const opsi = {
+        sabtuKerja: document.getElementById('f-sabtu').checked,
+        cutiBersamaLibur: document.getElementById('f-bersama').checked,
+      };
+      const h = tambahHariKerja(mulai, n, opsi);
+      elHasil.textContent = formatPanjang(h.hasil);
+      elKet.innerHTML = `${n >= 0 ? 'Ditambah' : 'Dikurangi'} <strong>${Math.abs(n)} hari kerja</strong> dari ${formatPanjang(mulai)}` +
+        (h.dilewati.length ? `, melewati ${h.dilewati.length} hari libur/akhir pekan.` : '.');
+      elLewat.innerHTML = h.dilewati.length
+        ? '<h3>Hari yang dilewati</h3><div class="tabel-bungkus"><table class="tabel"><thead><tr><th>Tanggal</th><th>Alasan dilewati</th></tr></thead><tbody>' +
+          h.dilewati.map((d) => `<tr><td>${formatPanjang(d.tanggal)}</td><td>${d.alasan}</td></tr>`).join('') +
+          '</tbody></table></div>'
+        : '';
+    }
+    form.addEventListener('submit', (e) => { e.preventDefault(); hitung(); });
+    form.addEventListener('change', hitung);
+    hitung();
+  </script>
+</Layout>

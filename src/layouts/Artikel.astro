@@ -1,0 +1,22 @@
+---
+import Kalender from './Kalender.astro';
+
+interface Props {
+  judul: string;
+  ringkasan: string;
+  tanggalTampil: string;
+}
+const { judul, ringkasan, tanggalTampil } = Astro.props;
+---
+<Kalender title={`${judul} | KalenderKerja`} description={ringkasan}>
+  <div class="bungkus-sempit">
+    <div class="daun daun-artikel">
+      <p class="daun-kicker">Blog KalenderKerja</p>
+      <h1>{judul}</h1>
+      <p class="daun-meta">{tanggalTampil} · Blog KalenderKerja</p>
+    </div>
+    <article class="prosa">
+      <slot />
+    </article>
+  </div>
+</Kalender>

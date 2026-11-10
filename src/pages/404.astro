@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Kalender.astro';
+import { u } from '../lib/base.js';
+---
+<Layout title="Halaman Tidak Ditemukan | KalenderKerja" description="Halaman yang Anda cari tidak ada di KalenderKerja.">
+  <div class="bungkus-sempit">
+    <div class="daun">
+      <p class="daun-kicker">404</p>
+      <h1>Tanggal Ini Tidak Ada di Kalender</h1>
+      <p class="lede">
+        Halaman yang Anda cari tidak ditemukan — mungkin tautannya keliru atau halamannya sudah
+        dipindah. Silakan kembali ke <a href={u('/')}>beranda</a> atau buka
+        <a href={u('/kalender-libur/')}>Kalender Libur</a>.
+      </p>
+    </div>
+  </div>
+</Layout>

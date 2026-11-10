@@ -1,0 +1,95 @@
+---
+import Kalender from '../layouts/Kalender.astro';
+import { u } from '../lib/base.js';
+---
+<Kalender title="Kontak — KalenderKerja" description="Hubungi KalenderKerja melalui kalenderkerja@gmail.com untuk koreksi data libur dengan sumber resmi, laporan kesalahan hitung dengan contoh tanggal, dan saran fitur.">
+  <div class="bungkus-sempit">
+    <div class="daun">
+      <p class="daun-kicker">Kontak</p>
+      <h1>Kontak</h1>
+      <p class="lede">Satu-satunya kanal kontak KalenderKerja adalah email: <strong>kalenderkerja@gmail.com</strong>. Tulis dari aplikasi email mana pun — tidak ada formulir di situs ini, dan tidak ada akun yang perlu dibuat.</p>
+    </div>
+    <section class="ed">
+      <h2>Cara menghubungi</h2>
+      <p>
+        Kirim email ke <strong>kalenderkerja@gmail.com</strong> dan sebutkan keperluan Anda sesingkat dan
+        sejelas mungkin pada baris subjek — misalnya “Koreksi data libur”, “Laporan kesalahan hitung”,
+        atau “Saran fitur”. Email adalah satu-satunya kanal yang tersedia: situs ini tidak memiliki nomor
+        telepon, kantor, akun media sosial resmi, atau layanan obrolan. Apabila Anda menemukan pihak lain
+        yang mengatasnamakan KalenderKerja di luar alamat email tersebut, pihak itu bukan kami.
+      </p>
+
+      <h2>Laporan yang dapat kami bantu</h2>
+      <h3>Koreksi data libur</h3>
+      <p>
+        Apabila Anda menemukan tanggal libur nasional atau cuti bersama di situs ini yang tidak sesuai
+        dengan ketetapan resmi, laporan Anda sangat membantu — data libur adalah nyawa situs ini.
+        Agar koreksi dapat ditindaklanjuti dengan cepat, mohon <strong>sebutkan sumber resminya</strong>:
+        nomor dan tahun SKB, Keputusan Menteri Agama, Keputusan Presiden, atau tautan rilis resmi
+        pemerintah yang menunjukkan tanggal yang benar. Koreksi yang disertai sumber resmi akan diperiksa
+        terhadap dokumennya dan diperbaiki bila terbukti benar; koreksi tanpa sumber tetap dibaca, tetapi
+        harus diverifikasi dari awal sehingga prosesnya lebih lama. Metode dan daftar sumber yang
+        sekarang dipakai dapat Anda periksa dulu di halaman
+        <a href={u('/tentang/')}>Tentang &amp; Sumber Data</a>.
+      </p>
+      <h3>Laporan kesalahan hitung</h3>
+      <p>
+        Apabila sebuah perkakas memberikan hasil yang Anda yakini keliru, mohon sertakan
+        <strong>contoh tanggalnya secara lengkap</strong>: perkakas apa yang dipakai, tanggal awal dan
+        tanggal akhir (atau jumlah hari) yang Anda masukkan, posisi kedua sakelarnya — apakah Sabtu
+        dihitung hari kerja dan apakah cuti bersama dihitung libur — hasil yang Anda peroleh, dan hasil
+        yang menurut Anda seharusnya. Dengan contoh yang dapat diulang persis seperti itu, kesalahan
+        dapat ditelusuri sampai ke tanggal penyebabnya; tanpa contoh tanggal, laporan “hasilnya salah”
+        sayangnya tidak dapat diperiksa. Perlu diingat, perbedaan hasil yang disebabkan posisi sakelar
+        atau kebijakan internal kantor bukanlah kesalahan hitung — lihat juga penjelasan di
+        <a href={u('/disclaimer/')}>Disclaimer</a>.
+      </p>
+      <h3>Saran fitur</h3>
+      <p>
+        Saran untuk perkakas baru, perbaikan tampilan, atau tambahan penjelasan diterima dengan senang
+        hati — terutama saran yang lahir dari pekerjaan nyata: jenis tenggat yang sulit dihitung, format
+        hasil yang perlu ditambahkan, atau pola hari kerja yang belum terwakili oleh dua sakelar yang
+        ada. Saran dicatat dan dipertimbangkan, meskipun tidak semua saran dapat diwujudkan dan tidak ada
+        janji jadwal untuk saran mana pun.
+      </p>
+
+      <h2>Hal yang tidak dapat kami bantu</h2>
+      <p>
+        Agar tidak menimbulkan harapan yang keliru, dua hal berikut berada di luar jangkauan situs ini:
+      </p>
+      <ul>
+        <li>
+          <strong>Konsultasi hukum ketenagakerjaan pribadi.</strong> KalenderKerja adalah alat bantu
+          hitung, bukan penasihat hukum dan bukan layanan HR. Pertanyaan mengenai hak Anda secara
+          spesifik — perselisihan cuti, lembur yang tidak dibayar, isi kontrak Anda — perlu diajukan
+          kepada bagian HR di tempat kerja Anda, dinas ketenagakerjaan, serikat pekerja, atau penasihat
+          hukum. Email mengenai hal ini tidak akan dijawab dengan pendapat hukum.
+        </li>
+        <li>
+          <strong>Pengurusan cuti atau administrasi ke kantor Anda.</strong> Situs ini tidak memiliki
+          hubungan apa pun dengan perusahaan atau instansi tempat Anda bekerja, dan tidak dapat
+          mengajukan, menyetujui, meneruskan, atau menanyakan status cuti Anda kepada siapa pun.
+          Pengajuan cuti selalu melalui jalur resmi di tempat kerja Anda masing-masing; yang dapat situs
+          ini bantu hanyalah hitungan tanggalnya, melalui
+          <a href={u('/pengoptimal-cuti/')}>Pengoptimal Cuti</a> dan perkakas lainnya.
+        </li>
+      </ul>
+
+      <h2>Waktu balas, seadanya</h2>
+      <p>
+        Terakhir, satu kejujuran kecil mengenai kecepatan. KalenderKerja <strong>dikelola secara
+        mandiri</strong>, bukan oleh tim layanan pelanggan — email dibaca dan dibalas seadanya di sela
+        pekerjaan lain. Laporan koreksi data dan kesalahan hitung yang disertai bukti lengkap akan
+        didahulukan karena menyangkut ketepatan yang dirasakan semua pengguna, tetapi tetap tidak ada
+        janji waktu balas tertentu: balasan dapat datang dalam hitungan hari, dan pada masa sibuk bisa
+        lebih lama. Apabila laporan Anda belum berbalas, jangan ragu mengirim satu email susulan yang
+        sopan dengan subjek yang sama — terkadang surat memang tenggelam, dan pengingat singkat membantu
+        menemukannya kembali.
+      </p>
+      <p>
+        Terima kasih sudah meluangkan waktu untuk menulis. Sebagian besar perbaikan pada situs seperti
+        ini berawal dari satu email pembaca yang jeli.
+      </p>
+    </section>
+  </div>
+</Kalender>

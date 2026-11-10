@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Kalender.astro';
+import { u } from '../lib/base.js';
+import EdKalkulator from '../konten/ed-kalkulator.astro';
+---
+<Layout
+  title="Kalkulator Hari Kerja — Hitung Hari Kerja di Antara Dua Tanggal | KalenderKerja"
+  description="Hitung hari kerja, hari kalender, akhir pekan, dan libur resmi di antara dua tanggal berdasarkan SKB 3 Menteri. Dengan pilihan Sabtu kerja dan perlakuan cuti bersama."
+>
+  <div class="bungkus-sempit">
+    <div class="daun">
+      <p class="daun-kicker">Perkakas</p>
+      <h1>Kalkulator Hari Kerja</h1>
+      <p class="lede">
+        Masukkan dua tanggal, lalu lihat rinciannya: total hari kalender, hari kerja, hari akhir
+        pekan, dan daftar libur nasional serta cuti bersama yang jatuh di dalam rentang — dihitung
+        dari data resmi SKB 3 Menteri.
+      </p>
+    </div>
+
+    <form class="alat" id="form-rentang">
+      <div class="baris">
+        <div class="kolom">
+          <label for="f-dari">Dari tanggal</label>
+          <input type="date" id="f-dari" value="2026-01-01" required />
+        </div>
+        <div class="kolom">
+          <label for="f-sampai">Sampai tanggal</label>
+          <input type="date" id="f-sampai" value="2026-01-31" required />
+          <p class="petunjuk">Kedua tanggal ikut dihitung (inklusif). Urutan terbalik otomatis ditukar.</p>
+        </div>
+      </div>
+      <label class="sakelar">
+        <input type="checkbox" id="f-sabtu" />
+        <span><strong>Sabtu dihitung hari kerja</strong> — untuk industri dan layanan yang bekerja enam hari sepekan.</span>
+      </label>
+      <label class="sakelar">
+        <input type="checkbox" id="f-bersama" checked />
+        <span><strong>Cuti bersama dihitung libur</strong> — matikan bila perusahaan Anda tidak meliburkan karyawan pada hari cuti bersama.</span>
+      </label>
+      <button class="tombol" type="submit">Hitung Hari Kerja</button>
+
+      <div class="hasil" id="hasil" aria-live="polite">
+        <div class="hasil-grid">
+          <div class="sel-hasil"><span class="angka biru" id="r-kerja">–</span><span class="ket">hari kerja</span></div>
+          <div class="sel-hasil"><span class="angka" id="r-total">–</span><span class="ket">hari kalender</span></div>
+          <div class="sel-hasil"><span class="angka" id="r-akhirpekan">–</span><span class="ket">hari akhir pekan</span></div>
+          <div class="sel-hasil"><span class="angka merah" id="r-libur">–</span><span class="ket">libur resmi di rentang</span></div>
+        </div>
+        <p id="r-ringkasan" style="margin-top:.9rem"></p>
+        <div id="r-daftar"></div>
+      </div>
+    </form>
+
+    <EdKalkulator />
+
+    <section class="ed">
+      <h2>Perkakas Terkait</h2>
+      <p>
+        Perlu menghitung tenggat dari satu tanggal? Gunakan
+        <a href={u('/tambah-hari-kerja/')}>Tambah Hari Kerja</a>. Hanya butuh selisih dua tanggal
+        tanpa rincian libur? Coba <a href={u('/jumlah-hari/')}>Jumlah Hari</a>. Merencanakan cuti?
+        <a href={u('/pengoptimal-cuti/')}>Pengoptimal Cuti</a> menemukan jendela libur paling efisien
+        untuk Anda.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    import { hitungRentang, formatPanjang } from '../lib/hitung.js';
+
+    const form = document.getElementById('form-rentang');
+    function hitung() {
+      const dari = document.getElementById('f-dari').value;
+      const sampai = document.getElementById('f-sampai').value;
+      if (!dari || !sampai) return;
+      const opsi = {
+        sabtuKerja: document.getElementById('f-sabtu').checked,
+        cutiBersamaLibur: document.getElementById('f-bersama').checked,
+      };
+      const h = hitungRentang(dari, sampai, opsi);
+      document.getElementById('r-kerja').textContent = h.hariKerja;
+      document.getElementById('r-total').textContent = h.totalKalender;
+      document.getElementById('r-akhirpekan').textContent = h.akhirPekan;
+      document.getElementById('r-libur').textContent = h.daftarLibur.length;
+      document.getElementById('r-ringkasan').innerHTML =
+        `Rentang <strong>${formatPanjang(h.dari)}</strong> s.d. <strong>${formatPanjang(h.sampai)}</strong>` +
+        (h.tertukar ? ' (urutan tanggal ditukar otomatis)' : '') +
+        `: <strong>${h.hariKerja} hari kerja</strong>, ${h.sabtu} hari Sabtu, ${h.minggu} hari Minggu, ` +
+        `${h.liburNasional} libur nasional dan ${h.cutiBersama} cuti bersama di dalam rentang.`;
+      const daftar = document.getElementById('r-daftar');
+      if (h.daftarLibur.length) {
+        daftar.innerHTML =
+          '<h3>Libur resmi di dalam rentang</h3><div class="tabel-bungkus"><table class="tabel"><thead><tr><th>Tanggal</th><th>Keterangan</th><th>Jenis</th></tr></thead><tbody>' +
+          h.daftarLibur
+            .map((e) => `<tr><td>${formatPanjang(e.tanggal)}</td><td>${e.nama}</td><td><span class="badge ${e.jenis}">${e.jenis === 'nasional' ? 'Libur Nasional' : 'Cuti Bersama'}</span></td></tr>`)
+            .join('') +
+          '</tbody></table></div>';
+      } else {
+        daftar.innerHTML = '<p class="kecil">Tidak ada libur nasional atau cuti bersama di dalam rentang ini.</p>';
+      }
+    }
+    form.addEventListener('submit', (e) => { e.preventDefault(); hitung(); });
+    form.addEventListener('change', hitung);
+    hitung();
+  </script>
+</Layout>

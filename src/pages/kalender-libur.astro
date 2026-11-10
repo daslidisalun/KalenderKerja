@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Kalender.astro';
+import { u } from '../lib/base.js';
+import EdKalenderLibur from '../konten/ed-kalenderlibur.astro';
+---
+<Layout
+  title="Kalender Libur 2026–2027 — Tanggal Merah, Libur Nasional & Cuti Bersama | KalenderKerja"
+  description="Kalender setahun penuh 2026 dan 2027 dengan tanggal merah resmi SKB 3 Menteri: 12 grid bulan, tabel lengkap libur nasional dan cuti bersama, daftar long weekend, siap cetak."
+>
+  <div class="bungkus">
+    <div class="daun">
+      <p class="daun-kicker">Kalender Setahun</p>
+      <h1>Kalender Libur <span id="judul-tahun-ini">2026</span></h1>
+      <p class="lede">
+        Dua belas lembar kalender dalam satu halaman: setiap tanggal merah libur nasional dan
+        cuti bersama menurut SKB 3 Menteri, tabel lengkapnya, dan daftar long weekend — untuk
+        merencanakan kerja, produksi, dan liburan jauh-jauh hari.
+      </p>
+      <p class="tanpa-cetak" style="margin-top:.8rem">
+        <span class="pilih-tahun" role="group" aria-label="Pilih tahun">
+          <button type="button" data-tahun="2026" class="aktif">2026</button>
+          <button type="button" data-tahun="2027">2027</button>
+        </span>
+        <button class="tombol sekunder" type="button" id="tombol-cetak" style="margin-left:.7rem">Cetak Kalender</button>
+      </p>
+      <p class="catatan kuning" id="catatan-sumber" style="margin-bottom:0"></p>
+    </div>
+
+    <div class="tahun-grid" id="grid-tahun"></div>
+
+    <h2 id="judul-tabel">Tabel Libur Resmi</h2>
+    <div id="tabel-libur"></div>
+
+    <h2>Long Weekend <span class="lw-tahun">2026</span></h2>
+    <p>
+      Rangkaian libur tiga hari atau lebih tanpa mengambil cuti, dihitung dengan aturan baku
+      (Sabtu–Minggu libur, cuti bersama dihitung libur). Ingin lebih panjang lagi? Sambung dengan
+      cuti kejepit lewat <a href={u('/pengoptimal-cuti/')}>Pengoptimal Cuti</a>.
+    </p>
+    <div id="daftar-lw"></div>
+
+    <EdKalenderLibur />
+  </div>
+
+  <script>
+    import { OPSI_BAKU, rangkaianLibur, formatPanjang, formatSingkat, NAMA_BULAN } from '../lib/hitung.js';
+    import { gridHTML } from '../lib/kal-ui.js';
+    import { SUMBER, liburTahun } from '../lib/libur.js';
+
+    const params = new URLSearchParams(location.search);
+    let tahun = params.get('tahun') === '2027' ? 2027 : 2026;
+
+    const elGrid = document.getElementById('grid-tahun');
+    const elTabel = document.getElementById('tabel-libur');
+    const elLW = document.getElementById('daftar-lw');
+    const elCatatan = document.getElementById('catatan-sumber');
+
+    function tabelJenis(jenis, judul) {
+      const isi = liburTahun(tahun, jenis);
+      const baris = isi.map((e) =>
+        `<tr><td>${formatPanjang(e.tanggal)}</td><td>${e.nama}</td></tr>`).join('');
+      return `<h3>${judul} (${isi.length} hari)</h3><div class="tabel-bungkus"><table class="tabel"><thead><tr><th>Tanggal</th><th>Keterangan</th></tr></thead><tbody>${baris}</tbody></table></div>`;
+    }
+
+    function gambar() {
+      document.getElementById('judul-tahun-ini').textContent = tahun;
+      document.querySelectorAll('.lw-tahun').forEach((el) => (el.textContent = tahun));
+      document.querySelectorAll('.pilih-tahun button').forEach((b) =>
+        b.classList.toggle('aktif', parseInt(b.dataset.tahun, 10) === tahun));
+      const s = SUMBER[tahun];
+      elCatatan.innerHTML =
+        `<strong>Sumber data ${tahun}:</strong> ${s.skb} tentang ${s.judul}, ditetapkan ${s.ditetapkan} — ` +
+        `${s.jumlahNasional} hari libur nasional dan ${s.jumlahBersama} hari cuti bersama. ${s.catatan}`;
+      let html = '';
+      for (let b = 0; b < 12; b++) {
+        html += `<div class="panel-kal"><div class="kal-judul"><span class="bulan-besar" style="font-size:1.25rem">${NAMA_BULAN[b]}</span><span class="tahun-besar" style="font-size:1rem">${tahun}</span></div>${gridHTML(tahun, b, OPSI_BAKU, { mini: true })}</div>`;
+      }
+      elGrid.innerHTML = html;
+      elTabel.innerHTML = tabelJenis('nasional', 'Libur Nasional') + tabelJenis('bersama', 'Cuti Bersama');
+      const lw = rangkaianLibur(tahun, OPSI_BAKU, 3);
+      elLW.innerHTML = '<div class="tabel-bungkus"><table class="tabel"><thead><tr><th>Rangkaian</th><th>Lama</th><th>Libur resmi di dalamnya</th></tr></thead><tbody>' +
+        lw.map((r) => `<tr><td>${formatSingkat(r.mulai)} — ${formatSingkat(r.selesai)}</td><td class="angka">${r.jumlahHari} hari</td><td>${r.liburDiDalam.map((l) => l.nama).filter((v, i, a) => a.indexOf(v) === i).join('; ') || '—'}</td></tr>`).join('') +
+        '</tbody></table></div>';
+    }
+    document.querySelectorAll('.pilih-tahun button').forEach((b) =>
+      b.addEventListener('click', () => { tahun = parseInt(b.dataset.tahun, 10); gambar(); }));
+    document.getElementById('tombol-cetak').addEventListener('click', () => window.print());
+    gambar();
+  </script>
+</Layout>

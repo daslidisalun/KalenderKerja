@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Kalender.astro';
+import { u } from '../lib/base.js';
+import EdJumlah from '../konten/ed-jumlah.astro';
+---
+<Layout
+  title="Jumlah Hari — Selisih Dua Tanggal dalam Hari, Minggu & Tahun-Bulan-Hari | KalenderKerja"
+  description="Hitung selisih dua tanggal: total hari, minggu penuh + sisa hari, uraian tahun-bulan-hari, dan jumlah hari kerjanya menurut kalender resmi Indonesia."
+>
+  <div class="bungkus-sempit">
+    <div class="daun">
+      <p class="daun-kicker">Perkakas</p>
+      <h1>Jumlah Hari di Antara Dua Tanggal</h1>
+      <p class="lede">
+        Berapa hari dari hari ini sampai tenggat itu? Berapa lama sebuah kontrak berjalan?
+        Masukkan dua tanggal dan dapatkan selisihnya dalam empat bentuk sekaligus: total hari,
+        minggu + sisa hari, uraian tahun-bulan-hari, dan hari kerja.
+      </p>
+    </div>
+
+    <form class="alat" id="form-jumlah">
+      <div class="baris">
+        <div class="kolom">
+          <label for="f-a">Tanggal awal</label>
+          <input type="date" id="f-a" value="2026-01-01" required />
+        </div>
+        <div class="kolom">
+          <label for="f-b">Tanggal akhir</label>
+          <input type="date" id="f-b" value="2026-12-31" required />
+          <p class="petunjuk">Urutan boleh terbalik; selisih selalu positif dan rentangnya ditampilkan urut.</p>
+        </div>
+      </div>
+      <button class="tombol" type="submit">Hitung Selisih</button>
+
+      <div class="hasil" id="hasil" aria-live="polite">
+        <div class="hasil-grid">
+          <div class="sel-hasil"><span class="angka biru" id="r-total">–</span><span class="ket">total hari</span></div>
+          <div class="sel-hasil"><span class="angka" id="r-minggu">–</span><span class="ket">minggu + sisa hari</span></div>
+          <div class="sel-hasil"><span class="angka" id="r-ymd">–</span><span class="ket">tahun · bulan · hari</span></div>
+          <div class="sel-hasil"><span class="angka merah" id="r-kerja">–</span><span class="ket">hari kerja di antaranya</span></div>
+        </div>
+        <p id="r-ket" style="margin-top:.9rem"></p>
+      </div>
+    </form>
+
+    <EdJumlah />
+
+    <section class="ed">
+      <h2>Perkakas Terkait</h2>
+      <p>
+        Perlu rincian libur di dalam rentang? <a href={u('/kalkulator-hari-kerja/')}>Kalkulator Hari
+        Kerja</a> menampilkannya per tanggal. Perlu maju/mundur N hari kerja dari satu tanggal?
+        Gunakan <a href={u('/tambah-hari-kerja/')}>Tambah Hari Kerja</a>.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    import { selisihTanggal, formatPanjang } from '../lib/hitung.js';
+
+    const form = document.getElementById('form-jumlah');
+    function hitung() {
+      const a = document.getElementById('f-a').value;
+      const b = document.getElementById('f-b').value;
+      if (!a || !b) return;
+      const h = selisihTanggal(a, b);
+      document.getElementById('r-total').textContent = h.total;
+      document.getElementById('r-minggu').textContent = `${h.minggu} mg ${h.sisaHari} hr`;
+      document.getElementById('r-ymd').textContent = `${h.tahun}·${h.bulan}·${h.hari}`;
+      document.getElementById('r-kerja').textContent = h.hariKerja;
+      document.getElementById('r-ket').innerHTML =
+        `Dari <strong>${formatPanjang(h.dari)}</strong> ke <strong>${formatPanjang(h.sampai)}</strong>: ` +
+        `<strong>${h.total} hari</strong> = ${h.minggu} minggu ${h.sisaHari} hari = ` +
+        `${h.tahun} tahun, ${h.bulan} bulan, ${h.hari} hari. Di antaranya terdapat ` +
+        `<strong>${h.hariKerja} hari kerja</strong> (dihitung dari hari setelah tanggal awal s.d. tanggal akhir, aturan baku).`;
+    }
+    form.addEventListener('submit', (e) => { e.preventDefault(); hitung(); });
+    form.addEventListener('change', hitung);
+    hitung();
+  </script>
+</Layout>

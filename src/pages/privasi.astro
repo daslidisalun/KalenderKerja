@@ -1,0 +1,110 @@
+---
+import Kalender from '../layouts/Kalender.astro';
+import { u } from '../lib/base.js';
+---
+<Kalender title="Kebijakan Privasi — KalenderKerja" description="Kebijakan Privasi KalenderKerja: semua perhitungan berjalan lokal di browser, tanpa akun dan tanpa pengiriman tanggal ke server, beserta catatan mengenai log hosting statis dan font Google Fonts.">
+  <div class="bungkus-sempit">
+    <div class="daun">
+      <p class="daun-kicker">Privasi</p>
+      <h1>Kebijakan Privasi</h1>
+      <p class="lede">Prinsipnya satu kalimat: tanggal yang Anda hitung adalah urusan Anda. Halaman ini menjelaskan secara terus terang apa yang terjadi — dan yang tidak terjadi — pada data Anda ketika memakai KalenderKerja.</p>
+    </div>
+    <section class="ed">
+      <h2>Semua perhitungan terjadi di browser Anda</h2>
+      <p>
+        KalenderKerja adalah situs statis. Setiap perkakas di dalamnya — Kalkulator Hari Kerja, Tambah
+        Hari Kerja, Jumlah Hari, dan Pengoptimal Cuti — bekerja dengan cara yang sama: halaman dan data
+        liburnya dimuat sekali ke peramban Anda, lalu <strong>seluruh perhitungan berjalan lokal di
+        perangkat Anda</strong> dengan kode yang sudah ada di halaman itu. Ketika Anda mengetik tanggal,
+        menggeser sakelar, atau menekan tombol hitung, tidak ada permintaan baru yang dikirim ke server
+        untuk mengolah masukan Anda. Hasil yang Anda lihat dihitung dan ditampilkan oleh peramban Anda
+        sendiri.
+      </p>
+      <p>
+        Konsekuensi praktisnya sederhana. <strong>Tidak ada akun</strong> di situs ini — tidak ada
+        pendaftaran, tidak ada masuk, tidak ada profil. <strong>Tanggal yang Anda masukkan tidak dikirim
+        ke server</strong>, tidak disimpan dalam basis data, tidak dilampirkan pada identitas apa pun,
+        dan tidak dapat dilihat oleh pengelola situs, karena memang tidak pernah meninggalkan perangkat
+        Anda. Menutup tab berarti menutup semuanya: tidak ada riwayat hitungan Anda yang tertinggal di
+        pihak kami untuk dihapus, diminta, atau bocor.
+      </p>
+
+      <h2>Apa yang dicatat oleh hosting: log akses teknis standar</h2>
+      <p>
+        Kejujuran menuntut satu pengecualian disebutkan apa adanya. Seperti hampir semua situs di
+        internet, KalenderKerja disajikan oleh layanan hosting statis, dan server hosting pada umumnya
+        mencatat <strong>log akses teknis standar</strong> setiap kali sebuah halaman diminta: alamat IP
+        yang meminta, waktu permintaan, halaman yang diminta, dan keterangan teknis peramban (user
+        agent). Log semacam ini dibuat oleh infrastruktur penyajian halaman itu sendiri — ia mencatat
+        bahwa sebuah halaman pernah dimuat, bukan apa yang Anda lakukan di dalam halaman itu. Masukan
+        tanggal Anda tidak termasuk di dalamnya, karena masukan itu tidak pernah dikirim.
+      </p>
+      <p>
+        Log akses tersebut dikelola oleh penyedia hosting sesuai kebijakannya masing-masing dan dipakai
+        untuk keperluan teknis lazim seperti keamanan dan diagnosis gangguan. KalenderKerja tidak
+        memperkaya log itu dengan pengenal tambahan, tidak menggabungkannya dengan data dari sumber lain,
+        dan tidak membangun profil pengunjung darinya.
+      </p>
+
+      <h2>Font dari Google Fonts — disebutkan terus terang</h2>
+      <p>
+        Satu permintaan keluar yang memang terjadi perlu disebutkan dengan jelas: huruf (font) yang
+        dipakai situs ini — Archivo dan Inter — <strong>dimuat dari Google Fonts</strong>. Artinya, ketika
+        halaman dibuka, peramban Anda meminta berkas font langsung ke server Google, dan dalam proses
+        itu Google menerima keterangan teknis yang menyertai permintaan semacam itu pada umumnya, seperti
+        alamat IP dan user agent peramban Anda. Ini adalah cara kerja Google Fonts di semua situs yang
+        memakainya, bukan mekanisme khusus KalenderKerja, dan tidak ada data hitungan Anda yang ikut di
+        dalamnya — yang diminta hanyalah berkas huruf. Apabila hal ini tidak berkenan bagi Anda, dampak
+        memblokir Google Fonts hanyalah tampilan huruf yang berganti ke huruf bawaan perangkat; semua
+        perkakas tetap bekerja penuh.
+      </p>
+
+      <h2>Cookie dan pelacakan</h2>
+      <p>
+        Pada versi demo ini, KalenderKerja <strong>tidak memasang cookie pelacak</strong>, tidak memasang
+        piksel iklan, dan tidak menyematkan layanan analitik yang mengikuti pengunjung antarhalaman atau
+        antarsitus. Situs ini tidak menampilkan iklan. Apabila di kemudian hari ada perubahan pada sisi
+        ini — misalnya analitik yang mengutamakan privasi atau jaringan iklan — perubahan itu akan
+        diumumkan melalui pembaruan halaman ini sebelum atau bersamaan dengan penerapannya, bukan
+        diam-diam sesudahnya.
+      </p>
+
+      <h2>Data yang tidak kami miliki</h2>
+      <p>
+        Karena arsitekturnya, ada pertanyaan-pertanyaan privasi lazim yang di sini jawabannya bukan
+        “kami melindungi”, melainkan “kami tidak mempunyai”. Kami tidak mempunyai daftar pengguna, tidak
+        mempunyai riwayat perhitungan siapa pun, tidak mempunyai alamat email pengunjung (kecuali bila
+        Anda sendiri menulis ke alamat kontak kami — itu korespondensi biasa, diperlakukan sebagai surat
+        masuk, bukan sebagai data pemasaran), dan tidak mempunyai apa pun untuk dijual, dibagikan, atau
+        diserahkan mengenai kebiasaan menghitung Anda. Satu-satunya hal yang meninggalkan perangkat Anda
+        atas inisiatif Anda sendiri adalah email yang Anda kirimkan ke
+        <a href={u('/kontak/')}>halaman Kontak</a> — dan isinya sepenuhnya Anda yang menentukan.
+      </p>
+
+      <h2>Tautan ke situs lain</h2>
+      <p>
+        Beberapa halaman di situs ini memuat tautan ke situs resmi pemerintah dan sumber rujukan lain,
+        agar Anda dapat memeriksa dokumen aslinya sendiri. Begitu Anda mengikuti tautan itu, Anda berada
+        di situs pihak lain dengan kebijakan privasinya sendiri, yang berada di luar kendali
+        KalenderKerja. Kami menganjurkan Anda membaca kebijakan privasi situs tujuan apabila hal itu
+        penting bagi Anda. Sebaliknya, keberadaan tautan di sini tidak berarti situs tujuan menerima data
+        apa pun tentang kunjungan Anda dari kami — peramban Anda berpindah halaman, dan hanya itu.
+      </p>
+
+      <h2>Perubahan kebijakan ini</h2>
+      <p>
+        Kebijakan ini dapat berubah apabila cara situs bekerja berubah — misalnya penambahan fitur yang
+        memang memerlukan pemrosesan di server, perubahan penyedia hosting, atau perubahan cara font
+        dimuat. Setiap perubahan akan diterbitkan pada halaman ini, dan perubahan yang bersifat material
+        akan dirumuskan dengan jelas, bukan disembunyikan dalam pergantian kata. Versi yang berlaku
+        adalah versi yang sedang tampil di halaman ini. Apabila Anda menemukan ketidakjelasan atau merasa
+        ada praktik yang tidak sesuai dengan bunyi halaman ini, sampaikan melalui
+        <strong>kalenderkerja@gmail.com</strong> agar dapat diperiksa dan, bila perlu, diperbaiki.
+      </p>
+      <p class="kecil">
+        Ringkasan metode dan sumber data yang dipakai perkakas dapat dibaca di halaman
+        <a href={u('/tentang/')}>Tentang &amp; Sumber Data</a>.
+      </p>
+    </section>
+  </div>
+</Kalender>

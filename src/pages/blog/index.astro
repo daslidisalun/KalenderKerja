@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Kalender.astro';
+import { u } from '../../lib/base.js';
+import { ARTIKEL } from '../../lib/blog.js';
+
+const daftar = [...ARTIKEL].sort((a, b) => b.tanggal.localeCompare(a.tanggal));
+---
+<Layout
+  title="Blog KalenderKerja — Libur, Cuti, dan Cara Menghitung Hari Kerja"
+  description="Blog KalenderKerja: daftar resmi libur nasional & cuti bersama 2026–2027 sesuai SKB 3 Menteri, strategi cuti kejepit, hak cuti tahunan 12 hari, dan cara menghitung hari kerja untuk deadline."
+>
+  <div class="bungkus-sempit">
+    <div class="daun">
+      <p class="daun-kicker">Blog KalenderKerja</p>
+      <h1>Blog KalenderKerja</h1>
+      <p class="lede">
+        Perkakas memberi angka; blog ini memberi konteks di balik angka itu — dasar hukumnya,
+        cara membacanya, dan strategi memakainya.
+      </p>
+    </div>
+
+    <section class="ed">
+      <p>
+        Kalender kerja Indonesia tampak sederhana — dua belas lembar, beberapa tanggal dicetak
+        merah — tetapi di baliknya ada tiga lapis keputusan yang berbeda. Lapis pertama adalah
+        hari libur nasional: hari besar keagamaan dan peringatan kenegaraan yang ditetapkan
+        pemerintah dan berlaku bagi hampir semua orang. Lapis kedua adalah cuti bersama:
+        hari-hari tambahan yang ditetapkan untuk menyambung libur dengan akhir pekan, tetapi
+        pelaksanaannya mengurangi jatah cuti tahunan dan bagi perusahaan swasta bergantung pada
+        kesepakatan di tempat kerja. Lapis ketiga adalah kebijakan masing-masing perusahaan —
+        giliran kerja, hari Sabtu yang tetap masuk, atau libur fakultatif — yang membuat dua
+        orang dengan kalender yang sama bisa memiliki jumlah hari kerja yang berbeda. Blog ini
+        menulis tentang ketiga lapis itu.
+      </p>
+      <p>
+        Isi rubrik ini bergerak mengikuti kebutuhan pembaca perkakas kami. Ada daftar resmi yang
+        dapat dijadikan rujukan cepat: libur nasional dan cuti bersama 2026 serta 2027 sesuai SKB
+        3 Menteri, lengkap dengan nomor keputusan dan catatan tentang tanggal hari raya Islam
+        yang kepastiannya menunggu sidang isbat. Ada tulisan strategi: bagaimana menemukan hari
+        kejepit dan mengubah satu hari cuti menjadi empat, enam, bahkan sembilan hari libur —
+        beserta daftar long weekend yang terbentuk tanpa cuti sama sekali. Ada pula tulisan
+        dasar yang sering disalahpahami: hak cuti tahunan dua belas hari kerja menurut Pasal 79
+        Undang-Undang Ketenagakerjaan, dan konvensi menghitung hari kerja untuk tenggat kontrak,
+        SLA, dan janji pengiriman yang membuat frasa “sepuluh hari kerja” tidak lagi ambigu.
+      </p>
+      <p>
+        Setiap angka dalam tulisan-tulisan ini berasal dari data yang sama dengan data yang
+        dipakai perkakas di situs ini, sehingga contoh terhitungnya dapat Anda periksa ulang
+        langsung: daftar libur pada artikel adalah daftar yang sama dengan yang mewarnai
+        <a href={u('/kalender-libur/')}>Kalender Libur</a>, dan jendela cuti pada artikel strategi
+        adalah jendela yang sama dengan yang ditemukan
+        <a href={u('/pengoptimal-cuti/')}>Pengoptimal Cuti</a>. Bila pemerintah menerbitkan
+        perubahan — keputusan Menteri Agama untuk hari raya Islam, misalnya — kami memperbarui
+        data dan tulisan yang terkait, dan menyebutkannya secara terbuka di halaman
+        <a href={u('/tentang/')}>Tentang</a>. Selamat membaca, dan semoga jatah cuti Anda tahun ini
+        jatuh pada tanggal-tanggal terbaiknya.
+      </p>
+    </section>
+
+    <section style="margin-top:1.6rem">
+      {daftar.map((a) => (
+        <article class="artu">
+          <p class="artu-tgl">{a.tanggalTampil}</p>
+          <h3><a href={u(`/blog/${a.slug}/`)}>{a.judul}</a></h3>
+          <p style="margin:0">{a.ringkasan}</p>
+        </article>
+      ))}
+    </section>
+  </div>
+</Layout>

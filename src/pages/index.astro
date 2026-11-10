@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Kalender.astro';
+import { u } from '../lib/base.js';
+import EdBeranda from '../konten/ed-beranda.astro';
+
+const perkakas = [
+  ['/kalkulator-hari-kerja/', 'Kalkulator Hari Kerja', 'Dua tanggal masuk, rincian keluar: total hari kalender, hari kerja, akhir pekan, dan daftar libur resmi di antaranya.'],
+  ['/tambah-hari-kerja/', 'Tambah Hari Kerja', '“Sepuluh hari kerja dari sekarang jatuh pada tanggal berapa?” Tambah atau kurangi hari kerja dan hari kalender dengan benar.'],
+  ['/jumlah-hari/', 'Jumlah Hari', 'Selisih dua tanggal dalam hari, minggu, dan uraian tahun-bulan-hari — plus jumlah hari kerjanya.'],
+  ['/pengoptimal-cuti/', 'Pengoptimal Cuti', 'Jendela cuti paling efisien 2026–2027: 1 hari cuti bisa menjadi 6, bahkan 9 hari libur berurutan.'],
+  ['/kalender-libur/', 'Kalender Libur 2026–2027', 'Kalender setahun penuh dengan tanggal merah, tabel libur nasional & cuti bersama, dan daftar long weekend.'],
+];
+---
+<Layout
+  title="KalenderKerja — Hitung Hari Kerja, Libur Nasional & Cuti Bersama Indonesia"
+  description="Kalender kerja Indonesia dengan data resmi SKB 3 Menteri 2026–2027: kalkulator hari kerja, tambah hari kerja, pengoptimal cuti kejepit, dan kalender libur setahun."
+>
+  <div class="bungkus">
+    <div class="daun">
+      <p class="daun-kicker">Kalender Kerja Indonesia · Data Resmi SKB 3 Menteri</p>
+      <h1>Hitung Hari Kerja, Libur Nasional &amp; Cuti Bersama</h1>
+      <p class="lede">
+        Berapa hari kerja bulan ini? Tenggat sepuluh hari kerja jatuh pada tanggal berapa? Satu hari
+        cuti di tanggal mana yang menghasilkan libur terpanjang? KalenderKerja menjawabnya dari
+        data resmi pemerintah — tanpa tebak-tebakan kalender dinding.
+      </p>
+    </div>
+
+    <div class="kartu-baris" aria-label="Status hari ini">
+      <div class="kartu">
+        <p class="k-label">Hari Ini</p>
+        <p class="k-besar" id="kartu-status">Memuat…</p>
+        <p class="kecil" id="kartu-status-ket"></p>
+      </div>
+      <div class="kartu">
+        <p class="k-label">Libur Resmi Berikutnya</p>
+        <p class="k-besar biru" id="kartu-berikutnya">Memuat…</p>
+        <p class="kecil" id="kartu-berikutnya-ket"></p>
+      </div>
+      <div class="kartu">
+        <p class="k-label">Long Weekend Terdekat</p>
+        <p class="k-besar merah" id="kartu-lw">Memuat…</p>
+        <p class="kecil" id="kartu-lw-ket"></p>
+      </div>
+    </div>
+
+    <section aria-label="Kalender bulan ini" style="margin-top:1.4rem">
+      <div class="panel-kal">
+        <div class="kal-judul">
+          <span class="bulan-besar" id="judul-bulan">Kalender</span>
+          <span class="tahun-besar" id="judul-tahun"></span>
+          <span style="margin-left:auto" class="tanpa-cetak">
+            <button class="tombol sekunder" id="bln-sebelum" type="button" style="margin-top:0;padding:.4rem .9rem">← Bulan lalu</button>
+            <button class="tombol sekunder" id="bln-berikut" type="button" style="margin-top:0;padding:.4rem .9rem">Bulan depan →</button>
+          </span>
+        </div>
+        <div id="grid-bulan"></div>
+        <div class="legenda">
+          <span><span class="contoh" style="background:#fdecec"></span>Libur nasional</span>
+          <span><span class="contoh" style="background:#fdf3e3"></span>Cuti bersama</span>
+          <span><span class="contoh" style="background:#e8f0f8"></span>Hari ini</span>
+          <span>Angka merah = hari Minggu &amp; libur nasional</span>
+        </div>
+        <div id="daftar-bulan"></div>
+      </div>
+    </section>
+
+    <h2>Long Weekend Berikutnya</h2>
+    <p>
+      Rangkaian libur tiga hari atau lebih yang terbentuk tanpa mengambil cuti — dihitung dari
+      data SKB 3 Menteri dengan aturan baku (Sabtu–Minggu libur, cuti bersama dihitung libur).
+      Geser untuk melihat semuanya, atau buka <a href={u('/kalender-libur/')}>Kalender Libur</a>
+      untuk daftar setahun penuh.
+    </p>
+    <div class="strip-long" id="strip-lw" data-kal={u('/kalender-libur/')}></div>
+
+    <h2>Perkakas KalenderKerja</h2>
+    <div class="hub-grid">
+      {perkakas.map(([href, judul, desk]) => (
+        <a class="hub" href={u(href)}>
+          <p class="hub-judul">{judul}</p>
+          <p>{desk}</p>
+          <p class="hub-panah">Buka perkakas →</p>
+        </a>
+      ))}
+    </div>
+
+    <EdBeranda />
+  </div>
+
+  <script>
+    import {
+      OPSI_BAKU, isoHariIni, infoHari, adalahHariKerja, alasanLibur, liburBerikutnya,
+      rangkaianLibur, formatPanjang, formatSingkat, selisihHari, NAMA_BULAN,
+    } from '../lib/hitung.js';
+    import { gridHTML, daftarLiburBulanHTML } from '../lib/kal-ui.js';
+
+    const hariIni = isoHariIni();
+    const info = infoHari(hariIni);
+    const elStatus = document.getElementById('kartu-status');
+    const elStatusKet = document.getElementById('kartu-status-ket');
+    if (adalahHariKerja(hariIni, OPSI_BAKU)) {
+      elStatus.textContent = 'Hari Kerja';
+      elStatus.classList.add('biru');
+      elStatusKet.textContent = `${formatPanjang(hariIni)} — hari ini adalah hari kerja menurut kalender resmi.`;
+    } else {
+      elStatus.textContent = 'Hari Libur';
+      elStatusKet.textContent = `${formatPanjang(hariIni)} — ${alasanLibur(hariIni, OPSI_BAKU)}.`;
+    }
+
+    const berikut = liburBerikutnya(hariIni);
+    const elB = document.getElementById('kartu-berikutnya');
+    const elBKet = document.getElementById('kartu-berikutnya-ket');
+    if (berikut) {
+      elB.textContent = berikut.nama.replace(/^Cuti Bersama /, 'CB ');
+      elBKet.textContent = `${formatPanjang(berikut.tanggal)} — ${berikut.selisih} hari lagi.`;
+    } else {
+      elB.textContent = 'Di luar data';
+      elBKet.textContent = 'Data libur situs ini mencakup 2026–2027.';
+    }
+
+    // Long weekend: gabung 2026 + 2027, ambil yang belum lewat.
+    const semuaLW = [...rangkaianLibur(2026, OPSI_BAKU, 3), ...rangkaianLibur(2027, OPSI_BAKU, 3)]
+      .filter((r, i, arr) => arr.findIndex((x) => x.mulai === r.mulai) === i)
+      .sort((a, b) => a.mulai.localeCompare(b.mulai));
+    const lwDepan = semuaLW.filter((r) => r.selesai >= hariIni);
+    const strip = document.getElementById('strip-lw');
+    strip.innerHTML = lwDepan.slice(0, 8).map((r) => {
+      const nama = r.liburDiDalam.map((l) => l.nama.replace(/^Cuti Bersama /, '')).filter((v, i, a) => a.indexOf(v) === i).join(' · ') || 'Akhir pekan panjang';
+      return `<a class="lw" href="${strip.dataset.kal}?tahun=${r.mulai.slice(0, 4)}">
+        <span class="lw-hari">${r.jumlahHari} hari</span>
+        <span class="lw-tgl">${formatSingkat(r.mulai)} — ${formatSingkat(r.selesai)}</span>
+        <span class="lw-nama">${nama}</span></a>`;
+    }).join('');
+    const elLW = document.getElementById('kartu-lw');
+    const elLWKet = document.getElementById('kartu-lw-ket');
+    if (lwDepan.length) {
+      const r = lwDepan[0];
+      elLW.textContent = `${r.jumlahHari} hari libur`;
+      const sisa = selisihHari(hariIni, r.mulai);
+      elLWKet.textContent = sisa <= 0
+        ? `Sedang berlangsung: ${formatSingkat(r.mulai)} — ${formatSingkat(r.selesai)}.`
+        : `${formatSingkat(r.mulai)} — ${formatSingkat(r.selesai)}, mulai ${sisa} hari lagi.`;
+    }
+
+    // Grid bulan dengan navigasi.
+    let tampil = new Date();
+    let thn = tampil.getFullYear();
+    let bln = tampil.getMonth();
+    const elGrid = document.getElementById('grid-bulan');
+    const elJudul = document.getElementById('judul-bulan');
+    const elTahun = document.getElementById('judul-tahun');
+    const elDaftar = document.getElementById('daftar-bulan');
+    function gambar() {
+      elJudul.textContent = NAMA_BULAN[bln];
+      elTahun.textContent = String(thn);
+      elGrid.innerHTML = gridHTML(thn, bln, OPSI_BAKU, { hariIni });
+      elDaftar.innerHTML = daftarLiburBulanHTML(thn, bln);
+    }
+    document.getElementById('bln-sebelum').addEventListener('click', () => {
+      bln--; if (bln < 0) { bln = 11; thn--; } gambar();
+    });
+    document.getElementById('bln-berikut').addEventListener('click', () => {
+      bln++; if (bln > 11) { bln = 0; thn++; } gambar();
+    });
+    gambar();
+  </script>
+</Layout>

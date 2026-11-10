@@ -1,0 +1,66 @@
+---
+import { u } from '../lib/base.js';
+---
+<section class="ed">
+  <h2>Dua Cara Menyatakan Jarak antara Dua Tanggal</h2>
+  <p>Pertanyaan “berapa lama dari tanggal ini sampai tanggal itu?” kedengarannya sederhana, tetapi sebenarnya memuat dua pertanyaan yang berbeda. Pertanyaan pertama: berapa hari kalender yang memisahkan kedua tanggal itu? Pertanyaan kedua: bagaimana jarak itu diuraikan dalam satuan yang biasa dipakai manusia, yaitu tahun, bulan, dan hari? Perkakas Jumlah Hari di halaman ini menjawab keduanya sekaligus, ditambah uraian dalam minggu serta jumlah hari kerja pada rentang yang sama.</p>
+  <p>Selisih kalender adalah angka yang paling dasar: jumlah hari penuh yang harus dilalui dari tanggal awal untuk tiba di tanggal akhir. Angka ini tidak peduli pada bulan, tahun, akhir pekan, atau hari libur. Ia dipakai setiap kali yang dibutuhkan adalah satu angka yang pasti dan dapat diverifikasi — umur sebuah proyek dalam hari, lamanya kontrak berjalan, atau jumlah hari yang menjadi dasar perhitungan biaya. Selisih kalender dihitung sebagai tanggal akhir dikurangi tanggal awal, sehingga rentang dari suatu tanggal ke tanggal yang sama menghasilkan nol.</p>
+  <p>Uraian tahun–bulan–hari menjawab kebutuhan yang berbeda. Untuk masa yang panjang, angka seperti 450 hari sulit dibayangkan; “1 tahun 2 bulan 24 hari” langsung terbaca. Uraian ini juga merupakan satuan yang dipakai dalam dokumen: masa kerja, masa sewa, dan usia dinyatakan dalam tahun, bulan, dan hari, bukan dalam total hari. Kedua bentuk itu menggambarkan jarak yang persis sama — keduanya harus selalu cocok satu sama lain, dan perkakas menampilkan keduanya agar Anda dapat memeriksanya silang.</p>
+
+  <h2>Metode Uraian: Meminjam Seperti Pengurangan</h2>
+  <p>Uraian tahun–bulan–hari diperoleh dengan cara yang sama seperti pengurangan tanggal yang diajarkan pada aritmetika tanggal: kurangkan tahun dengan tahun, bulan dengan bulan, dan tanggal dengan tanggal, lalu pinjam bila hasil salah satu komponen negatif.</p>
+  <ol>
+    <li>Kurangkan tanggal akhir dengan tanggal awal. Bila hasilnya negatif, kurangi satu bulan dari komponen bulan, lalu tambahkan jumlah hari pada bulan sebelum bulan akhir kepada komponen hari.</li>
+    <li>Kurangkan bulan akhir dengan bulan awal, termasuk pengurangan akibat pinjaman pada langkah pertama. Bila hasilnya negatif, kurangi satu tahun dari komponen tahun dan tambahkan 12 kepada komponen bulan.</li>
+    <li>Kurangkan tahun akhir dengan tahun awal, termasuk pengurangan akibat pinjaman pada langkah kedua. Ketiga komponen yang tersisa adalah uraian yang dicari.</li>
+  </ol>
+  <p>Kata “meminjam” di sini mempunyai arti yang konkret: satu bulan yang dipinjam tidak selalu bernilai 30 hari. Nilainya adalah jumlah hari pada bulan yang dipinjam — bulan sebelum bulan akhir — yang bisa berisi 28, 29, 30, atau 31 hari tergantung bulan dan tahunnya. Inilah sebabnya uraian tahun–bulan–hari harus selalu dihitung dari tanggal yang sebenarnya, bukan diperoleh dengan membagi total hari dengan 365 lalu sisanya dengan 30. Pembagian kasar seperti itu menghasilkan uraian yang tampak rapi tetapi tidak cocok bila dijumlahkan kembali ke tanggal awalnya.</p>
+
+  <h3>Contoh terhitung: 17 Agustus 2025 sampai 10 November 2026</h3>
+  <p>Ambil contoh yang cukup panjang untuk memperlihatkan semua langkahnya: dari Minggu, 17 Agustus 2025, sampai Selasa, 10 November 2026.</p>
+  <div class="tabel-bungkus"><table class="tabel">
+    <thead>
+      <tr><th>Bentuk hasil</th><th>Nilai</th><th>Cara memperolehnya</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Total hari</td><td>450 hari</td><td>Selisih kalender tanggal akhir dikurangi tanggal awal</td></tr>
+      <tr><td>Minggu dan hari</td><td>64 minggu 2 hari</td><td>450 dibagi 7 = 64 minggu, sisa 2 hari</td></tr>
+      <tr><td>Uraian tahun–bulan–hari</td><td>1 tahun 2 bulan 24 hari</td><td>Metode pinjam, diuraikan di bawah</td></tr>
+    </tbody>
+  </table></div>
+  <p>Langkah pinjamnya berjalan sebagai berikut. Komponen hari: 10 dikurangi 17 hasilnya negatif, jadi pinjam satu bulan dari November 2026; bulan sebelumnya, Oktober 2026, berisi 31 hari, sehingga komponen hari menjadi 10 + 31 − 17 = 24 hari. Komponen bulan: November adalah bulan ke-11, yang setelah dipinjam satu menjadi ke-10; 10 dikurangi 8 (Agustus) menghasilkan 2 bulan. Komponen tahun: 2026 dikurangi 2025 menghasilkan 1 tahun. Uraiannya adalah 1 tahun 2 bulan 24 hari — dan bila uraian itu ditambahkan kembali secara bertahap ke 17 Agustus 2025 (satu tahun ke 17 Agustus 2026, dua bulan ke 17 Oktober 2026, 24 hari ke 10 November 2026), hasilnya tepat tiba di tanggal akhir. Kesesuaian timbal-balik seperti inilah tanda uraian yang benar.</p>
+  <p>Sementara itu, 450 hari sama dengan 64 minggu penuh dan sisa 2 hari. Bentuk minggu berguna untuk rencana yang disusun per pekan — misalnya laporan kemajuan mingguan — karena ia menunjukkan berapa siklus pekan penuh yang terkandung dalam rentang tersebut, tanpa perlu memikirkan bulan yang panjangnya tidak seragam.</p>
+
+  <h2>Hari Kerja pada Rentang yang Sama</h2>
+  <p>Selain selisih kalender, perkakas ini juga melaporkan jumlah hari kerja di dalam rentang. Di sini berlaku satu konvensi yang perlu diperhatikan karena berbeda dari <a href={u('/kalkulator-hari-kerja/')}>Kalkulator Hari Kerja</a>: hari kerja dihitung <strong>dari hari setelah tanggal awal sampai dengan tanggal akhir</strong> — dalam notasi rentang, (tanggal awal, tanggal akhir]. Tanggal awal sendiri tidak dihitung, sedangkan tanggal akhir dihitung bila ia adalah hari kerja.</p>
+  <p>Konvensi ini mengikuti cara selisih biasanya dipakai. Bila sebuah kegiatan dimulai pada tanggal awal dan berakhir pada tanggal akhir, hari-hari kerja yang benar-benar dilalui untuk mencapainya adalah hari-hari sesudah hari mulai sampai dengan hari selesai. Konvensi yang sama dipakai oleh perkakas <a href={u('/tambah-hari-kerja/')}>Tambah Hari Kerja</a>, sehingga kedua perkakas konsisten: menambah N hari kerja dari tanggal awal lalu mengukur kembali selisihnya akan menghasilkan tepat N hari kerja. Pada Kalkulator Hari Kerja, sebaliknya, rentang dihitung inklusif pada kedua ujungnya karena tujuannya adalah menghitung isi suatu periode, misalnya jumlah hari kerja dalam satu bulan penuh. Selisih satu hari antara hasil kedua perkakas untuk rentang yang sama bukanlah kesalahan; ia berasal dari perbedaan konvensi ujung ini, dan bab pertanyaan di bawah halaman ini membantu menentukan perkakas mana yang sesuai dengan kebutuhan Anda.</p>
+  <p>Sebagaimana pada perkakas lain di situs ini, hari kerja berarti Senin sampai Jumat yang bukan libur nasional dan — secara bawaan — bukan cuti bersama, dengan sakelar penyesuaian untuk pola Sabtu kerja dan untuk perusahaan yang tetap masuk pada cuti bersama.</p>
+
+  <h2>Kegunaan Praktis</h2>
+  <ul>
+    <li><strong>Umur proyek dan masa kontrak.</strong> Mengetahui sebuah proyek telah berjalan 450 hari, atau sebuah kontrak tersisa 1 tahun 2 bulan lagi, memberi dasar yang sama bagi semua pihak untuk membicarakan kemajuan dan sisa kewajiban.</li>
+    <li><strong>Hitung mundur acara.</strong> Selisih menuju tanggal acara — pernikahan, peluncuran, ujian, keberangkatan — dinyatakan dalam hari untuk persiapan harian, dan dalam minggu untuk membagi persiapan menjadi tahapan pekanan.</li>
+    <li><strong>Bunga, tenor, dan angsuran.</strong> Banyak perhitungan keuangan berpijak pada jumlah hari yang sebenarnya berlalu antara dua tanggal, misalnya untuk bunga yang dihitung harian atau tenor yang dinyatakan dalam hari. Total hari yang tepat, termasuk memperhitungkan tahun kabisat, adalah bahan dasar perhitungan tersebut — sedangkan tarif dan rumus keuangannya sendiri ditentukan oleh perjanjian masing-masing.</li>
+    <li><strong>Masa berlaku dan tenggang dokumen.</strong> Selisih antara tanggal terbit dan tanggal kedaluwarsa menunjukkan masa berlaku yang sesungguhnya, yang kadang berbeda dari label “satu tahun” atau “enam bulan” yang tertulis secara umum.</li>
+    <li><strong>Usia dan masa kerja.</strong> Uraian tahun–bulan–hari adalah bentuk yang diminta formulir kepegawaian dan administrasi untuk menyatakan usia seseorang atau lamanya ia telah bekerja sampai suatu tanggal.</li>
+  </ul>
+
+  <h2>Jebakan Tahun Kabisat</h2>
+  <p>Tahun kabisat adalah tahun yang bulan Februarinya berisi 29 hari, sehingga jumlah hari dalam setahun menjadi 366. Tahun 2028 adalah tahun kabisat. Sebaliknya, tahun 2026 dan tahun 2027 bukan tahun kabisat: Februari 2026 dan Februari 2027 masing-masing hanya berisi 28 hari.</p>
+  <p>Jebakan muncul pada rentang yang melintasi akhir Februari. Rentang satu tahun kalender yang melintasi 29 Februari 2028 berisi 366 hari, sedangkan rentang satu tahun yang sama pada 2026–2027 berisi 365 hari. Perhitungan yang menganggap semua tahun berisi 365 hari akan meleset satu hari pada rentang pertama — selisih kecil yang tetap berarti bila angka hari dipakai untuk bunga, denda keterlambatan, atau tenggat yang ketat. Jebakan kedua ada pada metode pinjam: meminjam satu bulan dari Maret berarti meminjam Februari, yang nilainya 28 atau 29 hari tergantung tahunnya. Perkakas ini menghitung jumlah hari setiap bulan dari kalender yang sebenarnya, termasuk aturan kabisatnya, sehingga kedua jebakan tersebut tidak perlu Anda tangani secara manual — tetapi menyadarinya membantu Anda memahami mengapa dua rentang yang “sama panjang” dalam tahun-bulan dapat berbeda satu hari dalam total harinya.</p>
+  <p>Satu hal lagi yang sering dilupakan: uraian tahun–bulan–hari bukan satuan yang dapat dipertukarkan secara bebas dengan total hari. “Satu bulan” dari tanggal 31 Januari berakhir pada akhir Februari, bukan 31 hari kemudian dalam semua kasus. Bila sebuah ketentuan menyatakan jangka waktu dalam bulan atau tahun, patuhi satuan itu; bila ia menyatakannya dalam hari, pakailah total hari. Perkakas menampilkan kedua bentuk agar Anda dapat memakai bentuk yang sesuai dengan bunyi ketentuan Anda.</p>
+
+  <h2>Pertanyaan yang Sering Diajukan</h2>
+  <dl class="faq">
+    <dt>Mengapa selisih dari suatu tanggal ke tanggal yang sama hasilnya nol, bukan satu?</dt>
+    <dd>Karena perkakas ini mengukur jarak antara dua tanggal, bukan menghitung isi suatu periode. Jarak dari suatu titik ke titik itu sendiri adalah nol. Bila yang Anda butuhkan adalah jumlah hari dalam suatu periode termasuk kedua ujungnya — misalnya jumlah hari kerja selama bulan Januari — gunakan <a href={u('/kalkulator-hari-kerja/')}>Kalkulator Hari Kerja</a> yang menghitung rentang secara inklusif.</dd>
+    <dt>Mengapa jumlah hari kerja di sini berbeda satu dari hasil Kalkulator Hari Kerja?</dt>
+    <dd>Karena konvensi ujungnya berbeda. Di sini hari kerja dihitung dari hari setelah tanggal awal sampai tanggal akhir, agar konsisten dengan cara menambah hari kerja. Pada Kalkulator Hari Kerja, kedua tanggal ujung sama-sama dihitung karena tujuannya menghitung isi periode. Bila tanggal awal Anda adalah hari kerja, hasil kalkulator periode akan tepat satu lebih besar.</dd>
+    <dt>Apakah urutan tanggal boleh terbalik?</dt>
+    <dd>Boleh. Bila tanggal yang lebih akhir dimasukkan sebagai tanggal awal, perkakas menukar keduanya secara otomatis dan melaporkan jarak yang sama sebagai nilai positif, bersama uraian tahun–bulan–hari dari tanggal yang lebih awal ke tanggal yang lebih akhir.</dd>
+    <dt>Bagaimana cara memeriksa bahwa uraian tahun–bulan–hari saya benar?</dt>
+    <dd>Tambahkan uraian itu kembali ke tanggal awal secara bertahap: tambahkan tahunnya dahulu, lalu bulannya, lalu harinya. Uraian yang benar akan tiba tepat di tanggal akhir. Bila hasilnya meleset satu atau dua hari, penyebab tersering adalah pinjaman bulan yang memakai 30 hari untuk semua bulan, padahal bulan yang dipinjam seharusnya memakai jumlah hari sebenarnya — termasuk 29 Februari pada tahun kabisat seperti 2028.</dd>
+    <dt>Apakah hari libur memengaruhi total hari dan uraian tahun–bulan–hari?</dt>
+    <dd>Tidak. Total hari, uraian minggu, dan uraian tahun–bulan–hari adalah ukuran kalender murni dan tidak dipengaruhi hari libur atau akhir pekan sama sekali. Hari libur hanya memengaruhi kolom hari kerja yang dilaporkan bersama hasil tersebut.</dd>
+  </dl>
+</section>
